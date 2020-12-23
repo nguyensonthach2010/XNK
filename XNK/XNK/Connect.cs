@@ -72,5 +72,10 @@ namespace XNK
         {
             Application.Exit();
         }
+
+        internal static void Query(string insert)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
