@@ -27,5 +27,12 @@ namespace XNK
         {
             skin();
         }
+
+        private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Vattu vt = new Vattu();
+            vt.MdiParent = this;
+            vt.Show();
+        }
     }
 }
