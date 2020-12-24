@@ -129,7 +129,7 @@ namespace XNK
                 string sochi = gridView1.GetRowCellValue(e.RowHandle, "sochi").ToString();
                 string note = gridView1.GetRowCellValue(e.RowHandle, "note").ToString();
                 string stt = gridView1.GetRowCellValue(e.RowHandle, "stt").ToString();
-                string stt = gridView1.GetRowCellValue(e.RowHandle, "stt").ToString();
+
                 GridView view = sender as GridView;
                 //kiểm tra xem dòng đang chọn có phải dòng mới không nếu đúng thì insert không thì update
                 if (view.IsNewItemRow(e.RowHandle))
