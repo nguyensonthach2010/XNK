@@ -21,6 +21,7 @@ namespace XNK
             DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1, true);
             DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             themes.LookAndFeel.SkinName = "Valentine"; // cài đặt giao diện mặc định của form
+            //
         }
 
         private void Form1_Load(object sender, EventArgs e)
