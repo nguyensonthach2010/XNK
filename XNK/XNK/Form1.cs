@@ -34,5 +34,12 @@ namespace XNK
             vt.MdiParent = this;
             vt.Show();
         }
+
+        private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XK_Anh xka = new XK_Anh();
+            xka.MdiParent = this;
+            xka.Show();
+        }
     }
 }

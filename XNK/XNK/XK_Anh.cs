@@ -177,5 +177,66 @@ namespace XNK
                 }
             }
         }
+
+        private void repositoryItemDateEdit1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (tb == DialogResult.Yes)
+                {
+                    //if (Quyen.nhomnd == "Admin")
+                    //{
+                    try
+                    {
+                        string delete = "delete from XuatK where stt ='" + stt + "'";
+                        ConnectDB.Query(delete);
+                        LoadData();
+                    }
+                    catch
+                    {
+                        XtraMessageBox.Show("Không thế kết nối tới CSDL!!");
+                    }
+                    //}
+                    //else
+                    //{
+                    //    XtraMessageBox.Show("Chỉ Admin mới có quyền xoá");
+                    //}
+                }
+                else
+                {
+                    LoadData();
+                }
+            }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
+            try
+            {
+                string sql = "select stt, kh,xe, ngaydong,sttcont,pokhach,Supplies.CatalanCode,pocatalan,XuatK.Variant,palles,Box, (Box*palles) as tonghop, M2, (Box*palles*M2) as tongm2,duoimau,loca, vitri,socont, sochi,note,nuoc from XuatK inner join Supplies on Supplies.Variant = XuatK.Variant order by xe ASC, ngaydong ASC, sttcont ASC ";
+                SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
+                saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
+                if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
+                {
+                    string exportFilePath = saveFileDialogExcel.FileName;
+                    gridControl1.DataSource = ConnectDB.getTable(sql);
+                    gridControl1.ExportToXlsx(exportFilePath);
+                    XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch
+            {
+                XtraMessageBox.Show("Không thể Xuất file Excel", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
