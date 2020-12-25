@@ -81,6 +81,12 @@
     <Compile Include="Vattu.Designer.cs">
       <DependentUpon>Vattu.cs</DependentUpon>
     </Compile>
+    <Compile Include="XK_Anh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XK_Anh.Designer.cs">
+      <DependentUpon>XK_Anh.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Connect.resx">
       <DependentUpon>Connect.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="Vattu.resx">
       <DependentUpon>Vattu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XK_Anh.resx">
+      <DependentUpon>XK_Anh.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
