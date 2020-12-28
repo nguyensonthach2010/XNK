@@ -41,5 +41,19 @@ namespace XNK
             xka.MdiParent = this;
             xka.Show();
         }
+
+        private void barButtonItem24_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XK_Dailoan xkdl = new XK_Dailoan();
+            xkdl.MdiParent = this;
+            xkdl.Show();
+        }
+
+        private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            XK_UK xkuk = new XK_UK();
+            xkuk.MdiParent = this;
+            xkuk.Show();
+        }
     }
 }

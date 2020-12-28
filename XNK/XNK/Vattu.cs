@@ -205,5 +205,27 @@ namespace XNK
                 }
             }
         }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
+            try
+            {
+                string sql = "select Supplies.* from Supplies";
+                SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
+                saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
+                if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
+                {
+                    string exportFilePath = saveFileDialogExcel.FileName;
+                    gridControl1.DataSource = ConnectDB.getTable(sql);
+                    gridControl1.ExportToXlsx(exportFilePath);
+                    XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch
+            {
+                XtraMessageBox.Show("Không thể Xuất file Excel", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

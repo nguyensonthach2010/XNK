@@ -14,16 +14,17 @@ using DevExpress.XtraGrid;
 
 namespace XNK
 {
-    public partial class XK_Anh : DevExpress.XtraEditors.XtraForm
+    public partial class XK_Dailoan : DevExpress.XtraEditors.XtraForm
     {
-        public XK_Anh()
+        public XK_Dailoan()
         {
             InitializeComponent();
         }
 
-        private void XK_Anh_Load(object sender, EventArgs e)
+        private void XK_Dailoan_Load(object sender, EventArgs e)
         {
             LoadData();
+
         }
         private void LoadData()
         {
@@ -102,6 +103,40 @@ namespace XNK
             }
         }
 
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (tb == DialogResult.Yes)
+                {
+                    //if (Quyen.nhomnd == "Admin")
+                    //{
+                    try
+                    {
+                        string delete = "delete from XuatK where stt ='" + stt + "'";
+                        ConnectDB.Query(delete);
+                        LoadData();
+                    }
+                    catch
+                    {
+                        XtraMessageBox.Show("Không thế kết nối tới CSDL!!");
+                    }
+                    //}
+                    //else
+                    //{
+                    //    XtraMessageBox.Show("Chỉ Admin mới có quyền xoá");
+                    //}
+                }
+                else
+                {
+                    LoadData();
+                }
+            }
+        }
+
         private void gridView1_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
             string sErr = "";
@@ -139,7 +174,7 @@ namespace XNK
                 {
                     try
                     {
-                        string insert = "insert into XuatK values (N'" + kh + "',N'" + xe + "','" + Convert.ToDateTime(ngaydong).ToString("MM/dd/yyyy") + "','" + sttcont + "','" + pokhach + "','" + pocatalan + "','" + Variant + "','" + palles + "','" + duoimau + "','" + loca + "','" + vitri + "','" + socont + "','" + sochi + "',N'" + note + "',N'Anh')";
+                        string insert = "insert into XuatK values (N'" + kh + "',N'" + xe + "','" + Convert.ToDateTime(ngaydong).ToString("MM/dd/yyyy") + "','" + sttcont + "','" + pokhach + "','" + pocatalan + "','" + Variant + "','" + palles + "','" + duoimau + "','" + loca + "','" + vitri + "','" + socont + "','" + sochi + "',N'" + note + "',N'Đài Loan')";
                         ConnectDB.Query(insert);
                         LoadData();
                     }
@@ -180,45 +215,6 @@ namespace XNK
             }
         }
 
-        private void repositoryItemDateEdit1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void gridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
-
-            if (e.KeyCode == Keys.Delete)
-            {
-                DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (tb == DialogResult.Yes)
-                {
-                    //if (Quyen.nhomnd == "Admin")
-                    //{
-                    try
-                    {
-                        string delete = "delete from XuatK where stt ='" + stt + "'";
-                        ConnectDB.Query(delete);
-                        LoadData();
-                    }
-                    catch
-                    {
-                        XtraMessageBox.Show("Không thế kết nối tới CSDL!!");
-                    }
-                    //}
-                    //else
-                    //{
-                    //    XtraMessageBox.Show("Chỉ Admin mới có quyền xoá");
-                    //}
-                }
-                else
-                {
-                    LoadData();
-                }
-            }
-        }
-
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
@@ -243,9 +239,17 @@ namespace XNK
 
         // code trường STT
         bool indicatorIcon = true;
+        private void gridView1_RowCountChanged(object sender, EventArgs e)
+        {
+            GridView gridview = ((GridView)sender);
+            if (!gridview.GridControl.IsHandleCreated) return;
+            Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
+            SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
+            gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 10;
+        }
+
         private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
-
             try
             {
                 GridView view = (GridView)sender;
@@ -288,15 +292,6 @@ namespace XNK
             {
                 XtraMessageBox.Show("Lỗi cột STT");
             }
-        }
-
-        private void gridView1_RowCountChanged(object sender, EventArgs e)
-        {
-            GridView gridview = ((GridView)sender);
-            if (!gridview.GridControl.IsHandleCreated) return;
-            Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
-            SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
-            gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 10;
         }
     }
 }

@@ -87,6 +87,18 @@
     <Compile Include="XK_Anh.Designer.cs">
       <DependentUpon>XK_Anh.cs</DependentUpon>
     </Compile>
+    <Compile Include="XK_Dailoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XK_Dailoan.Designer.cs">
+      <DependentUpon>XK_Dailoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XK_UK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XK_UK.Designer.cs">
+      <DependentUpon>XK_UK.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Connect.resx">
       <DependentUpon>Connect.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XK_Anh.resx">
       <DependentUpon>XK_Anh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XK_Dailoan.resx">
+      <DependentUpon>XK_Dailoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XK_UK.resx">
+      <DependentUpon>XK_UK.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

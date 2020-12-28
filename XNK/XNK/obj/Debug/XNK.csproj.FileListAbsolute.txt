@@ -155,3 +155,5 @@ C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\bin\Debug\es\DevExpress.Office.v19.2.C
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\bin\Debug\ja\DevExpress.Office.v19.2.Core.resources.dll
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\bin\Debug\ru\DevExpress.Office.v19.2.Core.resources.dll
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Anh.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Dailoan.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_UK.resources

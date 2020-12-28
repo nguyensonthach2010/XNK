@@ -14,45 +14,14 @@ using DevExpress.XtraGrid;
 
 namespace XNK
 {
-    public partial class XK_Anh : DevExpress.XtraEditors.XtraForm
+    public partial class XK_UK : DevExpress.XtraEditors.XtraForm
     {
-        public XK_Anh()
+        public XK_UK()
         {
             InitializeComponent();
         }
 
-        private void XK_Anh_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-        private void LoadData()
-        {
-            try
-            {
-                Load_lookupedit();
-                string sql = "select stt, kh,xe, ngaydong,sttcont,pokhach,Supplies.CatalanCode,pocatalan,XuatK.Variant,palles,Box, (Box*palles) as tonghop, M2, (Box*palles*M2) as tongm2,duoimau,loca, vitri,socont, sochi,note,nuoc from XuatK inner join Supplies on Supplies.Variant = XuatK.Variant order by xe ASC, ngaydong ASC, sttcont ASC ";
-                gridControl1.DataSource = ConnectDB.getTable(sql);
-            }
-            catch
-            {
-                XtraMessageBox.Show("Có lỗi xảy ra!! Không kết nối được tới CSDL");
-            }
-        }
-        private void Load_lookupedit()
-        {
-            try
-            {
-                string sql1 = "select Variant, CatalanCode, SuppliesName,Bricks, Size, M2,Box,Shelf,CustomerName from Supplies";
-                repositoryItemLookUpEdit1.DataSource = ConnectDB.getTable(sql1);
-                repositoryItemLookUpEdit1.ValueMember = "Variant";
-                repositoryItemLookUpEdit1.DisplayMember = "Variant";
-            }
-            catch
-            {
-                XtraMessageBox.Show("Có lỗi xảy ra!!");
-            }
-        }
-
+        // Load dữ liệu tương ứng với giá trị vào các cột trong bảng
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
@@ -139,7 +108,7 @@ namespace XNK
                 {
                     try
                     {
-                        string insert = "insert into XuatK values (N'" + kh + "',N'" + xe + "','" + Convert.ToDateTime(ngaydong).ToString("MM/dd/yyyy") + "','" + sttcont + "','" + pokhach + "','" + pocatalan + "','" + Variant + "','" + palles + "','" + duoimau + "','" + loca + "','" + vitri + "','" + socont + "','" + sochi + "',N'" + note + "',N'Anh')";
+                        string insert = "insert into XuatK values (N'" + kh + "',N'" + xe + "','" + Convert.ToDateTime(ngaydong).ToString("MM/dd/yyyy") + "','" + sttcont + "','" + pokhach + "','" + pocatalan + "','" + Variant + "','" + palles + "','" + duoimau + "','" + loca + "','" + vitri + "','" + socont + "','" + sochi + "',N'" + note + "',N'UK')";
                         ConnectDB.Query(insert);
                         LoadData();
                     }
@@ -180,11 +149,6 @@ namespace XNK
             }
         }
 
-        private void repositoryItemDateEdit1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
             string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
@@ -219,6 +183,39 @@ namespace XNK
             }
         }
 
+        private void XK_UK_Load(object sender, EventArgs e)
+        {
+            //Hiển thị dữ liệu lên form
+            LoadData();
+        }
+        private void LoadData()
+        {
+            try
+            {
+                Load_lookupedit();
+                string sql = "select stt, kh,xe, ngaydong,sttcont,pokhach,Supplies.CatalanCode,pocatalan,XuatK.Variant,palles,Box, (Box*palles) as tonghop, M2, (Box*palles*M2) as tongm2,duoimau,loca, vitri,socont, sochi,note,nuoc from XuatK inner join Supplies on Supplies.Variant = XuatK.Variant order by xe ASC, ngaydong ASC, sttcont ASC ";
+                gridControl1.DataSource = ConnectDB.getTable(sql);
+            }
+            catch
+            {
+                XtraMessageBox.Show("Có lỗi xảy ra!! Không kết nối được tới CSDL");
+            }
+        }
+        private void Load_lookupedit()
+        {
+            try
+            {
+                string sql1 = "select Variant, CatalanCode, SuppliesName,Bricks, Size, M2,Box,Shelf,CustomerName from Supplies";
+                repositoryItemLookUpEdit1.DataSource = ConnectDB.getTable(sql1);
+                repositoryItemLookUpEdit1.ValueMember = "Variant";
+                repositoryItemLookUpEdit1.DisplayMember = "Variant";
+            }
+            catch
+            {
+                XtraMessageBox.Show("Có lỗi xảy ra!!");
+            }
+        }
+
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
@@ -243,9 +240,17 @@ namespace XNK
 
         // code trường STT
         bool indicatorIcon = true;
+        private void gridView1_RowCountChanged(object sender, EventArgs e)
+        {
+            GridView gridview = ((GridView)sender);
+            if (!gridview.GridControl.IsHandleCreated) return;
+            Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
+            SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
+            gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 10;
+        }
+
         private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
-
             try
             {
                 GridView view = (GridView)sender;
@@ -290,13 +295,6 @@ namespace XNK
             }
         }
 
-        private void gridView1_RowCountChanged(object sender, EventArgs e)
-        {
-            GridView gridview = ((GridView)sender);
-            if (!gridview.GridControl.IsHandleCreated) return;
-            Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
-            SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
-            gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 10;
-        }
+
     }
 }
