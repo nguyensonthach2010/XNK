@@ -57,7 +57,7 @@ namespace XNK
             string sErr = "";
             bool bVali = true;
             // kiem tra cell cua mot dong dang Edit xem co rong ko?
-            if (gridView1.GetRowCellValue(e.RowHandle, "Variant").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "CatalanCode").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "SuppliesName").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Size").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Bricks").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "M2").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Box").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Shelf").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "CustomerName").ToString() == "")
+            if (gridView1.GetRowCellValue(e.RowHandle, "Variant").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "CatalanCode").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "SuppliesName").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Size").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Bricks").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "M2").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Box").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Shelf").ToString() == ""  || gridView1.GetRowCellValue(e.RowHandle, "Productcode").ToString() == "")
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
@@ -76,6 +76,8 @@ namespace XNK
                 string Box = gridView1.GetRowCellValue(e.RowHandle, "Box").ToString();
                 string Shelf = gridView1.GetRowCellValue(e.RowHandle, "Shelf").ToString();
                 string CustomerName = gridView1.GetRowCellValue(e.RowHandle, "CustomerName").ToString();
+                string Productcode = gridView1.GetRowCellValue(e.RowHandle, "Productcode").ToString();
+
 
                 GridView view = sender as GridView;
                 //kiểm tra xem dòng đang chọn có phải dòng mới không nếu đúng thì insert không thì update
@@ -83,7 +85,7 @@ namespace XNK
                 {
                     try
                     {
-                        string insert = "insert into Supplies values('" + variant + "','" + CatalanCode + "','" + SuppliesName + "','" + size + "','" + Bricks + "','" + M2 + "','" + Box + "','" + Shelf + "','" + CustomerName + "')";
+                        string insert = "insert into Supplies values('" + variant + "','" + CatalanCode + "','" + SuppliesName + "','" + size + "','" + Bricks + "','" + M2 + "','" + Box + "','" + Shelf + "','" + CustomerName + "','" + Productcode + "')";
                         ConnectDB.Query(insert);
                         Loaddata();
                     }
@@ -96,7 +98,7 @@ namespace XNK
                 {
                     try
                     {
-                        string update = "update Supplies set CatalanCode = '" + CatalanCode + "', SuppliesName = '" + SuppliesName + "', Size = '" + size + "', Bricks = '" + Bricks + "', M2 = '" + M2 + "', Box = '" + Box + "', Shelf = '" + Shelf + "', CustomerName = '" + CustomerName + "' where Variant = '" + variant + "'";
+                        string update = "update Supplies set CatalanCode = '" + CatalanCode + "',Productcode = '" + Productcode + "', SuppliesName = '" + SuppliesName + "', Size = '" + size + "', Bricks = '" + Bricks + "', M2 = '" + M2 + "', Box = '" + Box + "', Shelf = '" + Shelf + "', CustomerName = '" + CustomerName + "' where Variant = '" + variant + "'";
                         ConnectDB.Query(update);
                         Loaddata();
                     }
