@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,6 +55,18 @@ namespace XNK
             XK_UK xkuk = new XK_UK();
             xkuk.MdiParent = this;
             xkuk.Show();
+        }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Backup bk = new Backup();
+            bk.Show();
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Restore rs = new Restore();
+            rs.Show();
         }
     }
 }

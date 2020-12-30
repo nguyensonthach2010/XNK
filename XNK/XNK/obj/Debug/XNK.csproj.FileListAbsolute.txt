@@ -118,7 +118,6 @@ C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Form1.resources
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Properties.Resources.resources
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Vattu.resources
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.csproj.GenerateResource.cache
-C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.exe.licenses
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.csproj.CoreCompileInputs.cache
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.csproj.CopyComplete
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.exe
@@ -157,3 +156,5 @@ C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\bin\Debug\ru\DevExpress.Office.v19.2.C
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Anh.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Dailoan.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_UK.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.Backup.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.Restore.resources
