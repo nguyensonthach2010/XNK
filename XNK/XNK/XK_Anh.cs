@@ -89,7 +89,7 @@ namespace XNK
                         view.SetRowCellValue(e.RowHandle, "tongm2", "");
                         string cellValue3 = "" + Math.Round((float)tongm2, 2) + "" + view.GetRowCellValue(e.RowHandle, "tongm2").ToString();
                         view.SetRowCellValue(e.RowHandle, "tongm2", cellValue3);
-
+                       
                         break;
                 }
             }
