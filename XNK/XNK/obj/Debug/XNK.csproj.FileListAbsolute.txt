@@ -92,3 +92,6 @@ C:\Users\thachns\source\repos\XNK\XNK\XNK\bin\Debug\es\DevExpress.Office.v19.2.C
 C:\Users\thachns\source\repos\XNK\XNK\XNK\bin\Debug\ja\DevExpress.Office.v19.2.Core.resources.dll
 C:\Users\thachns\source\repos\XNK\XNK\XNK\bin\Debug\ru\DevExpress.Office.v19.2.Core.resources.dll
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Anh.resources
+C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TonPI_Anh.resources
+C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.KH.resources
+C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_Anh.resources
