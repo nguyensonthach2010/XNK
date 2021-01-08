@@ -545,6 +545,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("RePI_Anh.IconOptions.LargeImage")));
             this.Name = "RePI_Anh";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xuất hàng theo hợp đồng";
             this.Load += new System.EventHandler(this.RePI_Anh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

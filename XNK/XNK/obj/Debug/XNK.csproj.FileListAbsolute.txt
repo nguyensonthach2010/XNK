@@ -95,3 +95,4 @@ C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Anh.resources
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TonPI_Anh.resources
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.KH.resources
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_Anh.resources
+C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.NXT_Anh.resources

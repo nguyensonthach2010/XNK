@@ -168,6 +168,7 @@ namespace XNK
             }
             else
             {
+                e.Valid = false;
                 DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (tb == DialogResult.OK)
                 {
@@ -193,25 +194,26 @@ namespace XNK
             //string socont = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "socont").ToString();
             //string sochi = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "sochi").ToString();
             //string note = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "note").ToString();
-            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
 
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete && gridView1.State != DevExpress.XtraGrid.Views.Grid.GridState.Editing)
             {
+                string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
+
                 DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (tb == DialogResult.Yes)
                 {
                     //if (Quyen.nhomnd == "Admin")
                     //{
-                        try
-                        {
-                            string delete = "delete from XuatK where stt ='" + stt + "'";
-                            ConnectDB.Query(delete);
-                            LoadData();
-                        }
-                        catch
-                        {
-                            XtraMessageBox.Show("Không thế kết nối tới CSDL!!");
-                        }
+                    try
+                    {
+                        string delete = "delete from XuatK where stt ='" + stt + "'";
+                        ConnectDB.Query(delete);
+                        LoadData();
+                    }
+                    catch
+                    {
+                        XtraMessageBox.Show("Không thế kết nối tới CSDL!!");
+                    }
                     //}
                     //else
                     //{
@@ -222,7 +224,12 @@ namespace XNK
                 {
                     LoadData();
                 }
+                if (e.KeyCode == Keys.F5 && gridView1.State != DevExpress.XtraGrid.Views.Grid.GridState.Editing)
+                {
+                    LoadData();
+                }
             }
+
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -245,6 +252,11 @@ namespace XNK
             {
                 XtraMessageBox.Show("Không thể Xuất file Excel", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
         }
     }
 }

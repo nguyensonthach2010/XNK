@@ -87,23 +87,6 @@ namespace XNK
                         string cellValue1 = "" + tb.Rows[0]["Size"].ToString().Trim() + "" + view.GetRowCellValue(e.RowHandle, "Size").ToString();
                         view.SetRowCellValue(e.RowHandle, "Size", cellValue1);
                         break;
-
-                    case "SL Xuất":
-
-                        string sql1 = "select SUM(amount) as Xuat ,AVG(pallet_pi) - SUM(amount) as TonPI from Ton_PI where VariantPI='" + view.GetRowCellValue(e.RowHandle, "VariantPI").ToString() + "' and PI='" + view.GetRowCellValue(e.RowHandle, "PI").ToString() + "'";
-                        DataTable tb1 = ConnectDB.getTable(sql1);
-
-                        int Tongxuat = int.Parse(tb1.Rows[0]["Xuat"].ToString().Trim()) + int.Parse(view.GetRowCellValue(e.RowHandle, "amount").ToString());
-                        int tonpi = int.Parse(tb1.Rows[0]["TonPI"].ToString().Trim()) - int.Parse(view.GetRowCellValue(e.RowHandle, "amount").ToString());
-                        view.SetRowCellValue(e.RowHandle, "Tongxuat", "");
-                        string cellValue2 = "" + Tongxuat + "" + view.GetRowCellValue(e.RowHandle, "Tongxuat").ToString();
-                        view.SetRowCellValue(e.RowHandle, "Tongxuat", cellValue2);
-
-                        view.SetRowCellValue(e.RowHandle, "tonpi", "");
-                        string cellValue3 = "" + tonpi + "" + view.GetRowCellValue(e.RowHandle, "tonpi").ToString();
-                        view.SetRowCellValue(e.RowHandle, "tonpi", cellValue3);
-
-                        break;
                 }
             }
             catch
@@ -121,7 +104,7 @@ namespace XNK
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
-                sErr = sErr + "Vui lòng điền đầy đủ thông tin!! Nhấn OK để load lại form nhập!!";
+                sErr = sErr + "Vui lòng điền đầy đủ Pi, Variant và Số lượng xuất thông tin!!";
             }
 
             if (bVali)
@@ -153,10 +136,12 @@ namespace XNK
                     catch
                     {
                         XtraMessageBox.Show("Không thể kết nối tới CSDL!!");
+                        LoadData();
                     }
                 }
                 else
                 {
+                    e.Valid = false;
                     //if (Quyen.nhomnd == "Admin")
                     //{
                     try
@@ -168,6 +153,7 @@ namespace XNK
                     catch
                     {
                         XtraMessageBox.Show("Không thể kết nối tới CSDL!!");
+                        LoadData();
                     }
                     //}
                     //else
@@ -178,6 +164,7 @@ namespace XNK
             }
             else
             {
+                e.Valid = false;
                 DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (tb == DialogResult.OK)
                 {
@@ -214,10 +201,11 @@ namespace XNK
         }
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
 
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete && gridView1.State != DevExpress.XtraGrid.Views.BandedGrid.BandedGridState.Editing)
             {
+                string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
+
                 DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (tb == DialogResult.Yes)
                 {
@@ -244,18 +232,18 @@ namespace XNK
                     LoadData();
                 }
             }
-            if (e.KeyCode == Keys.F5)
+            if (e.KeyCode == Keys.F5 && gridView1.State != DevExpress.XtraGrid.Views.BandedGrid.BandedGridState.Editing)
             {
                 LoadData();
             }
 
-            if (e.KeyCode == Keys.F1)
+            if (e.KeyCode == Keys.F1 && gridView1.State != DevExpress.XtraGrid.Views.BandedGrid.BandedGridState.Editing)
             {
                 KH k = new KH();
                 k.Show();
             }
 
-            if (e.Control && e.KeyCode == Keys.P)
+            if (e.Control && e.KeyCode == Keys.P && gridView1.State != DevExpress.XtraGrid.Views.BandedGrid.BandedGridState.Editing)
             {
                 Exporting();
             }
@@ -287,6 +275,11 @@ namespace XNK
 
             RePI_Anh re = new RePI_Anh();
             re.Show();
+        }
+
+        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
         }
     }
 }
