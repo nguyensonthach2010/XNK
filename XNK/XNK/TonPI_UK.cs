@@ -119,22 +119,6 @@ namespace XNK
                         view.SetRowCellValue(e.RowHandle, "Size", cellValue1);
                         break;
 
-                    case "SL Xuất":
-
-                        string sql1 = "select SUM(amount) as Xuat ,AVG(pallet_pi) - SUM(amount) as TonPI from Ton_PI where VariantPI='" + view.GetRowCellValue(e.RowHandle, "VariantPI").ToString() + "' and PI='" + view.GetRowCellValue(e.RowHandle, "PI").ToString() + "'";
-                        DataTable tb1 = ConnectDB.getTable(sql1);
-
-                        int Tongxuat = int.Parse(tb1.Rows[0]["Xuat"].ToString().Trim()) + int.Parse(view.GetRowCellValue(e.RowHandle, "amount").ToString());
-                        int tonpi = int.Parse(tb1.Rows[0]["TonPI"].ToString().Trim()) - int.Parse(view.GetRowCellValue(e.RowHandle, "amount").ToString());
-                        view.SetRowCellValue(e.RowHandle, "Tongxuat", "");
-                        string cellValue2 = "" + Tongxuat + "" + view.GetRowCellValue(e.RowHandle, "Tongxuat").ToString();
-                        view.SetRowCellValue(e.RowHandle, "Tongxuat", cellValue2);
-
-                        view.SetRowCellValue(e.RowHandle, "tonpi", "");
-                        string cellValue3 = "" + tonpi + "" + view.GetRowCellValue(e.RowHandle, "tonpi").ToString();
-                        view.SetRowCellValue(e.RowHandle, "tonpi", cellValue3);
-
-                        break;
                 }
             }
             catch

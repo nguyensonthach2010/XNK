@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 
 namespace XNK
@@ -13,8 +14,9 @@ namespace XNK
     {
         public SplashScreen1()
         {
+
             InitializeComponent();
-            this.labelCopyright.Text = "Copyright © 1998-" + DateTime.Now.Year.ToString();
+
         }
 
         #region Overrides
@@ -28,6 +30,7 @@ namespace XNK
 
         public enum SplashScreenCommand
         {
+
         }
     }
 }

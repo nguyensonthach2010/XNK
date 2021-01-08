@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Threading.Tasks;
+using DevExpress.XtraSplashScreen;
 
 namespace XNK
 {
@@ -17,7 +17,11 @@ namespace XNK
     {
         public Form1()
         {
-            InitializeComponent();
+
+       
+                InitializeComponent();
+         
+
         }
         private void skin()
         {
@@ -30,6 +34,7 @@ namespace XNK
         private void Form1_Load(object sender, EventArgs e)
         {
             skin();
+
         }
 
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -143,5 +148,7 @@ namespace XNK
             tpi_dl.Text = "Tồn PI Đài Loan";
             tpi_dl.Show();
         }
+
+
     }
 }
