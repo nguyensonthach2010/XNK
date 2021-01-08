@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid;
+using System.Threading;
 
 namespace XNK
 {
@@ -79,6 +80,7 @@ namespace XNK
                 string Productcode = gridView1.GetRowCellValue(e.RowHandle, "Productcode").ToString();
 
 
+
                 GridView view = sender as GridView;
                 //kiểm tra xem dòng đang chọn có phải dòng mới không nếu đúng thì insert không thì update
                 if (view.IsNewItemRow(e.RowHandle))
@@ -87,6 +89,7 @@ namespace XNK
                     {
                         string insert = "insert into Supplies values('" + variant + "','" + CatalanCode + "','" + SuppliesName + "','" + size + "','" + Bricks + "','" + M2 + "','" + Box + "','" + Shelf + "','" + CustomerName + "','" + Productcode + "')";
                         ConnectDB.Query(insert);
+                     
                         Loaddata();
                     }
                     catch
@@ -100,6 +103,7 @@ namespace XNK
                     {
                         string update = "update Supplies set CatalanCode = '" + CatalanCode + "',Productcode = '" + Productcode + "', SuppliesName = '" + SuppliesName + "', Size = '" + size + "', Bricks = '" + Bricks + "', M2 = '" + M2 + "', Box = '" + Box + "', Shelf = '" + Shelf + "', CustomerName = '" + CustomerName + "' where Variant = '" + variant + "'";
                         ConnectDB.Query(update);
+                       
                         Loaddata();
                     }
                     catch
@@ -191,6 +195,7 @@ namespace XNK
                     try
                     {
                         string delete = "delete from Supplies where Variant ='" + Variant + "' ";
+                        
                         ConnectDB.Query(delete);
                         Loaddata();
 

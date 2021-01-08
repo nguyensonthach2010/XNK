@@ -221,6 +221,7 @@ namespace XNK
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
@@ -297,6 +298,11 @@ namespace XNK
             Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
             SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
             gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 10;
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
