@@ -28,7 +28,7 @@ namespace XNK
             Load_Lookupedit();
             try
             {
-                string sql = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tongia , tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Anh' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = 'Anh' order by stt desc";
+                string sql = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],slhopx,iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tongia ,	iif(slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)>0, slhopx, slhopx + ( slhopx - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slhxuat,(SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tonghxuat,slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tonhop, tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Anh' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = 'Anh' order by stt desc";
                 gridControl1.DataSource = ConnectDB.getTable(sql);
             }catch
             {
@@ -140,6 +140,7 @@ namespace XNK
                 string FOB_Date = bandedGridView1.GetRowCellValue(e.RowHandle, "FOB_Date").ToString();
                 string FOB_Amount = bandedGridView1.GetRowCellValue(e.RowHandle, "FOB_Amount").ToString();
                 string stt = bandedGridView1.GetRowCellValue(e.RowHandle, "stt").ToString();
+                string slhopx = bandedGridView1.GetRowCellValue(e.RowHandle, "slhopx").ToString();
 
                 GridView view = sender as GridView;
                 //kiểm tra xem dòng đang chọn có phải dòng mới không nếu đúng thì insert không thì update
@@ -147,7 +148,7 @@ namespace XNK
                 {
                     try
                     {
-                        string insert = "insert into NXT values ('" + namsx + "','" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',N'" + kho + "',N'" + vitri + "','" + ctlcode + "','" + duoimau + "','" + loca + "','" + slgia + "','" + slhop + "','" + dnxl + "','" + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + "','" + FOB_Amount + "',N'Anh')";
+                        string insert = "insert into NXT values ('" + namsx + "','" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',N'" + kho + "',N'" + vitri + "','" + ctlcode + "','" + duoimau + "','" + loca + "','" + slgia + "','" + slhop + "','" + dnxl + "','" + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + "','" + FOB_Amount + "',N'Anh','"+ slhopx + "')";
                         ConnectDB.Query(insert);
                         LoadDT();
                     }
@@ -162,7 +163,7 @@ namespace XNK
                     //{
                     try
                     {
-                        string update = "update NXT set namsx = '" + namsx + "',ngaynhap= '" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',kho = N'" + kho + "',vitri = N'" + vitri + "',ctlcode = '" + ctlcode + "',duoimau = '" + duoimau + "',loca = '" + loca + "',slgia = '" + slgia + "',slhop = '" + slhop + "',dnxl = N'" + dnxl + "', FOB_Date =' " + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + " ',FOB_Amount = ' " + FOB_Amount + " '  where stt = '" + stt + "'";
+                        string update = "update NXT set namsx = '" + namsx + "',ngaynhap= '" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',kho = N'" + kho + "',vitri = N'" + vitri + "',ctlcode = '" + ctlcode + "',duoimau = '" + duoimau + "',loca = '" + loca + "',slgia = '" + slgia + "',slhop = '" + slhop + "',dnxl = N'" + dnxl + "', FOB_Date =' " + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + " ',FOB_Amount = ' " + FOB_Amount + " ',slhopx='"+ slhopx + "'  where stt = '" + stt + "'";
                         ConnectDB.Query(update);
                         LoadDT();
                     }
@@ -198,7 +199,7 @@ namespace XNK
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
-                string sql3 = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tongia , tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Anh' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = 'Anh' order by stt desc";
+                string sql3 = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],slhopx,iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tongia ,	iif(slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)>0, slhopx, slhopx + ( slhopx - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slhxuat,(SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tonghxuat,slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tonhop, tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Anh' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = 'Anh' order by stt desc";
                 SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
                 saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
                 if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
@@ -218,6 +219,36 @@ namespace XNK
         private void bandedGridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+        }
+
+        public static string namsx = "";
+        public static string ngaynhap = "";
+        public static string kho = "";
+        public static string vitri = "";
+        public static string ctlcode = "";
+        public static string duoimau = "";
+        public static string loca = "";
+        public static string slgia = "";
+        public static string slhop = "";
+        public static string dnxl = "";
+        public static string stt = "";
+
+        private void bandedGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            namsx = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "namsx").ToString();
+            ngaynhap = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "ngaynhap").ToString();
+            kho = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "kho").ToString();
+            vitri = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "vitri").ToString();
+            ctlcode = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "ctlcode").ToString();
+            duoimau = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "duoimau").ToString();
+            loca = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "loca").ToString();
+            slgia = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "slgia").ToString();
+            slhop = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "slhop").ToString();
+            dnxl = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "dnxl").ToString();
+            stt = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "stt").ToString();
+
+            ReNXT_Anh re = new ReNXT_Anh();
+            re.Show();
         }
     }
 }

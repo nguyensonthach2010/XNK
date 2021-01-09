@@ -56,6 +56,7 @@
             this.repositoryItemDateEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bandedGridColumn12 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.bandedGridColumn17 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn14 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -133,7 +134,8 @@
             this.bandedGridColumn13,
             this.bandedGridColumn14,
             this.bandedGridColumn15,
-            this.bandedGridColumn16});
+            this.bandedGridColumn16,
+            this.bandedGridColumn17});
             this.bandedGridView1.GridControl = this.gridControl1;
             this.bandedGridView1.Name = "bandedGridView1";
             this.bandedGridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -144,6 +146,7 @@
             this.bandedGridView1.InvalidRowException += new DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventHandler(this.bandedGridView1_InvalidRowException);
             this.bandedGridView1.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.bandedGridView1_ValidateRow);
             this.bandedGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bandedGridView1_KeyDown);
+            this.bandedGridView1.DoubleClick += new System.EventHandler(this.bandedGridView1_DoubleClick);
             // 
             // gridBand1
             // 
@@ -430,9 +433,10 @@
             this.gridBand2.Columns.Add(this.bandedGridColumn10);
             this.gridBand2.Columns.Add(this.bandedGridColumn11);
             this.gridBand2.Columns.Add(this.bandedGridColumn12);
+            this.gridBand2.Columns.Add(this.bandedGridColumn17);
             this.gridBand2.Name = "gridBand2";
             this.gridBand2.VisibleIndex = 1;
-            this.gridBand2.Width = 256;
+            this.gridBand2.Width = 331;
             // 
             // bandedGridColumn10
             // 
@@ -444,7 +448,7 @@
             this.bandedGridColumn10.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn10.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.bandedGridColumn10.Caption = "Đã ĐNXL";
+            this.bandedGridColumn10.Caption = "Đã ĐNXL (giá)";
             this.bandedGridColumn10.ColumnEdit = this.repositoryItemSpinEdit5;
             this.bandedGridColumn10.FieldName = "dnxl";
             this.bandedGridColumn10.Name = "bandedGridColumn10";
@@ -501,7 +505,7 @@
             this.bandedGridColumn12.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn12.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.bandedGridColumn12.Caption = "Số lượng xuất";
+            this.bandedGridColumn12.Caption = "Số lượng giá xuất";
             this.bandedGridColumn12.ColumnEdit = this.repositoryItemSpinEdit2;
             this.bandedGridColumn12.FieldName = "FOB_Amount";
             this.bandedGridColumn12.Name = "bandedGridColumn12";
@@ -516,6 +520,21 @@
             this.repositoryItemSpinEdit2.IsFloatValue = false;
             this.repositoryItemSpinEdit2.Mask.EditMask = "N00";
             this.repositoryItemSpinEdit2.Name = "repositoryItemSpinEdit2";
+            // 
+            // bandedGridColumn17
+            // 
+            this.bandedGridColumn17.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn17.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.bandedGridColumn17.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn17.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn17.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn17.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.bandedGridColumn17.Caption = "SL Hộp xuất";
+            this.bandedGridColumn17.FieldName = "slhopx";
+            this.bandedGridColumn17.Name = "bandedGridColumn17";
+            this.bandedGridColumn17.Visible = true;
             // 
             // gridBand3
             // 
@@ -558,8 +577,8 @@
             this.bandedGridColumn14.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn14.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.bandedGridColumn14.Caption = "Hộp";
-            this.bandedGridColumn14.FieldName = "slhop";
+            this.bandedGridColumn14.Caption = "Tồn hộp";
+            this.bandedGridColumn14.FieldName = "tonhop";
             this.bandedGridColumn14.Name = "bandedGridColumn14";
             this.bandedGridColumn14.Visible = true;
             this.bandedGridColumn14.Width = 52;
@@ -740,13 +759,10 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn14;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn15;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn16;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit4;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit2;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit3;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit7;
@@ -760,5 +776,9 @@
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn17;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
     }
 }
