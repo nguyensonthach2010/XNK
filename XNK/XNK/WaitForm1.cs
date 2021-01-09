@@ -23,6 +23,7 @@ namespace XNK
         {
             base.SetCaption(caption);
             this.progressPanel1.Caption = caption;
+
         }
         public override void SetDescription(string description)
         {
@@ -33,9 +34,7 @@ namespace XNK
         {
             base.ProcessCommand(cmd, arg);
         }
-
         #endregion
-
         public enum WaitFormCommand
         {
         }

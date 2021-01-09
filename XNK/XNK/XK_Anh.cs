@@ -171,6 +171,7 @@ namespace XNK
             }
             else
             {
+                e.Valid = false;
                 DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (tb == DialogResult.OK)
                 {
@@ -302,6 +303,12 @@ namespace XNK
 
         private void gridControl1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
 
         }
     }

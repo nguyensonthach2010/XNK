@@ -23,6 +23,7 @@ namespace XNK
          
 
         }
+
         private void skin()
         {
             DevExpress.UserSkins.BonusSkins.Register();
@@ -39,10 +40,19 @@ namespace XNK
 
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+
+
             //timedelay load form data time 0.3s
-            splashScreenManager1.ShowWaitForm();
-            Thread.Sleep(300);
-            splashScreenManager1.CloseWaitForm();
+            //splashScreenManager1.ShowWaitForm();
+            //Thread.Sleep(300);
+            //splashScreenManager1.CloseWaitForm();
+            SplashScreenManager.ShowForm(this, typeof(WaitForm1), true, true, false);
+            for (int i = 1; i <= 100; i++)
+            {
+                SplashScreenManager.Default.SetWaitFormDescription(i.ToString() + "%");
+                Thread.Sleep(5);
+            }
+            SplashScreenManager.CloseForm(false);
 
             Vattu vt = new Vattu();
             vt.MdiParent = this;
@@ -148,7 +158,5 @@ namespace XNK
             tpi_dl.Text = "Tồn PI Đài Loan";
             tpi_dl.Show();
         }
-
-
     }
 }

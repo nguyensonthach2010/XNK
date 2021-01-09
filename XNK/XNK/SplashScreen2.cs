@@ -5,18 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 
 namespace XNK
 {
-    public partial class SplashScreen1 : SplashScreen
+    public partial class SplashScreen2 : SplashScreen
     {
-        public SplashScreen1()
+        public SplashScreen2()
         {
-
             InitializeComponent();
-
+            this.labelCopyright.Text = "Công ty cổ phần Catalan " + DateTime.Now.Year.ToString();
         }
 
         #region Overrides
@@ -30,7 +28,6 @@ namespace XNK
 
         public enum SplashScreenCommand
         {
-
         }
     }
 }

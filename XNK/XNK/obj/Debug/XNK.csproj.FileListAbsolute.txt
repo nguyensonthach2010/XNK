@@ -158,7 +158,6 @@ C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Dailoan.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.XK_UK.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.Backup.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.Restore.resources
-C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.SplashScreen1.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.WaitForm1.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.KH.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_Anh.resources
@@ -167,3 +166,4 @@ C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_Dl.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_UK.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TonPI_Dl.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TonPI_UK.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.SplashScreen2.resources

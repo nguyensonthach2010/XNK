@@ -90,6 +90,7 @@ namespace XNK
         private void TonPI_UK_Load(object sender, EventArgs e)
         {
             LoadData();
+
         }
 
         private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -193,6 +194,7 @@ namespace XNK
             }
             else
             {
+                e.Valid = false;
                 DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (tb == DialogResult.OK)
                 {
@@ -335,6 +337,11 @@ namespace XNK
             Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
             SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
             gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 10;
+        }
+
+        private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
         }
     }
 }
