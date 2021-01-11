@@ -680,8 +680,9 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("ReNXT_Anh.IconOptions.LargeImage")));
             this.Name = "ReNXT_Anh";
-            this.Text = "ReNXT_Anh";
+            this.Text = "NXT - Xuất hàng cũ ";
             this.Load += new System.EventHandler(this.ReNXT_Anh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);

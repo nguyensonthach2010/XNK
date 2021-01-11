@@ -51,6 +51,20 @@ namespace XNK
             x.Show();
         }
 
+        private void barButtonItem31_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TkTonPI_Anh t = new TkTonPI_Anh();
+            t.MdiParent = this;
+            t.Show();
+        }
+
+        private void barButtonItem32_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            TKNXT_Anh t = new TKNXT_Anh();
+            t.MdiParent = this;
+            t.Show();
+        }
+
         //private void barButtonItem30_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         //{
 

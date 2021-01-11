@@ -107,6 +107,18 @@
     <Compile Include="RePI_Anh.Designer.cs">
       <DependentUpon>RePI_Anh.cs</DependentUpon>
     </Compile>
+    <Compile Include="TKNXT_Anh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TKNXT_Anh.Designer.cs">
+      <DependentUpon>TKNXT_Anh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TkTonPI_Anh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TkTonPI_Anh.Designer.cs">
+      <DependentUpon>TkTonPI_Anh.cs</DependentUpon>
+    </Compile>
     <Compile Include="TonPI_Anh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RePI_Anh.resx">
       <DependentUpon>RePI_Anh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TKNXT_Anh.resx">
+      <DependentUpon>TKNXT_Anh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TkTonPI_Anh.resx">
+      <DependentUpon>TkTonPI_Anh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TonPI_Anh.resx">
       <DependentUpon>TonPI_Anh.cs</DependentUpon>

@@ -69,6 +69,8 @@
             this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageCategory2 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -144,9 +146,11 @@
             this.barButtonItem27,
             this.barButtonItem28,
             this.barButtonItem29,
-            this.barButtonItem30});
+            this.barButtonItem30,
+            this.barButtonItem31,
+            this.barButtonItem32});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 41;
+            this.ribbonControl1.MaxItemId = 43;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageCategories.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageCategory[] {
             this.ribbonPageCategory2,
@@ -434,6 +438,24 @@
             this.barButtonItem30.Id = 40;
             this.barButtonItem30.Name = "barButtonItem30";
             // 
+            // barButtonItem31
+            // 
+            this.barButtonItem31.Caption = "Thống kê tồn PI";
+            this.barButtonItem31.Id = 41;
+            this.barButtonItem31.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem31.ImageOptions.Image")));
+            this.barButtonItem31.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem31.ImageOptions.LargeImage")));
+            this.barButtonItem31.Name = "barButtonItem31";
+            this.barButtonItem31.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem31_ItemClick);
+            // 
+            // barButtonItem32
+            // 
+            this.barButtonItem32.Caption = "Thống kê NXT";
+            this.barButtonItem32.Id = 42;
+            this.barButtonItem32.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem32.ImageOptions.Image")));
+            this.barButtonItem32.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem32.ImageOptions.LargeImage")));
+            this.barButtonItem32.Name = "barButtonItem32";
+            this.barButtonItem32.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem32_ItemClick);
+            // 
             // ribbonPageCategory2
             // 
             this.ribbonPageCategory2.Name = "ribbonPageCategory2";
@@ -541,6 +563,7 @@
             // 
             this.ribbonPageGroup11.AllowTextClipping = false;
             this.ribbonPageGroup11.ItemLinks.Add(this.barButtonItem19);
+            this.ribbonPageGroup11.ItemLinks.Add(this.barButtonItem31);
             this.ribbonPageGroup11.Name = "ribbonPageGroup11";
             this.ribbonPageGroup11.Text = "Tồn PI";
             // 
@@ -548,6 +571,7 @@
             // 
             this.ribbonPageGroup12.AllowTextClipping = false;
             this.ribbonPageGroup12.ItemLinks.Add(this.barButtonItem20);
+            this.ribbonPageGroup12.ItemLinks.Add(this.barButtonItem32);
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.Text = "Nhập - Xuất - Tồn";
             // 
@@ -724,6 +748,8 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem28;
         private DevExpress.XtraBars.BarButtonItem barButtonItem29;
         private DevExpress.XtraBars.BarButtonItem barButtonItem30;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem31;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem32;
     }
 }
 

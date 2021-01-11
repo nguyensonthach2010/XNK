@@ -97,3 +97,5 @@ C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.KH.resources
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_Anh.resources
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.NXT_Anh.resources
 C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.ReNXT_Anh.resources
+C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TkTonPI_Anh.resources
+C:\Users\thachns\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TKNXT_Anh.resources
