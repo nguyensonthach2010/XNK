@@ -158,5 +158,41 @@ namespace XNK
             tpi_dl.Text = "Tồn PI Đài Loan";
             tpi_dl.Show();
         }
+
+        private void barButtonItem26_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            NXT_DL nxt_dl = new NXT_DL();
+            nxt_dl.MdiParent = this;
+            nxt_dl.Text = "Nhập Xuất Tồn ĐL";
+            nxt_dl.Show();
+        }
+
+        private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            NXT_Anh nxt_a = new NXT_Anh();
+            nxt_a.MdiParent = this;
+            nxt_a.Text = "Nhập Xuất Tồn Anh";
+            nxt_a.Show();
+        }
+
+        private void barButtonItem23_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            NXT_UK nxt_uk = new NXT_UK();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Text = "Nhập Xuất UK";
+            nxt_uk.Show();
+        }
     }
 }

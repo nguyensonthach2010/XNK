@@ -167,3 +167,15 @@ C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.RePI_UK.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TonPI_Dl.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TonPI_UK.resources
 C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.SplashScreen2.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.NXT_DL.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.ReNXT_DL.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.ReNXT_UK.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.NXT_UK.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.NXT_Anh.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.ReNXT_Anh.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TKNXT_Anh.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TKNXT_DL.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TKNXT_UK.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.TkTonPI_Anh.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.tkTonPI_DL.resources
+C:\Users\thangbv\source\repos\XNK\XNK\XNK\obj\Debug\XNK.tkTonPI_UK.resources
