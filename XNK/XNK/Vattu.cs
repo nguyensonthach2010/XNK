@@ -185,7 +185,7 @@ namespace XNK
         //Code chức năng xóa 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete && gridView1.State != DevExpress.XtraGrid.Views.Grid.GridState.Editing)
             {
                 string Variant = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "Variant").ToString();
                 DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

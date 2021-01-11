@@ -58,6 +58,7 @@ namespace XNK
         private void ReNXT_Anh_Load(object sender, EventArgs e)
         {
             LoadDT();
+            txtfob.Text = DateTime.Now.ToString("MM/dd/yyyy");
         }
     }
 }

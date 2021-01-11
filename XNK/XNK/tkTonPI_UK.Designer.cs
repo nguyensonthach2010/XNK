@@ -448,7 +448,7 @@
             this.ClientSize = new System.Drawing.Size(997, 427);
             this.Controls.Add(this.gridControl1);
             this.Name = "tkTonPI_UK";
-            this.Text = "tkTonPI_UK";
+            this.Text = "Thống kê Tồn PT UK";
             this.Load += new System.EventHandler(this.tkTonPI_UK_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

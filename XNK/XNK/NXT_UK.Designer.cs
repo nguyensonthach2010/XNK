@@ -717,7 +717,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "NXT_UK";
-            this.Text = "XNT_UK";
+            this.Text = "NXT UK";
             this.Load += new System.EventHandler(this.XNT_UK_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();

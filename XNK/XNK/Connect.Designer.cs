@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connect));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
@@ -228,6 +229,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(239, 203);
             this.Controls.Add(this.layoutControl1);
+            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("Connect.IconOptions.LargeImage")));
+            this.MaximizeBox = false;
             this.Name = "Connect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kết nối";

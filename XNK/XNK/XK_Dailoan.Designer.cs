@@ -648,7 +648,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "XK_Dailoan";
-            this.Text = "XK_Dailoan";
+            this.Text = "Xuất khẩu Đài Loan";
             this.Load += new System.EventHandler(this.XK_Dailoan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

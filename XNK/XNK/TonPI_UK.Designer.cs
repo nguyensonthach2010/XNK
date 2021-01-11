@@ -685,7 +685,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "TonPI_UK";
-            this.Text = "TonPI_UK";
+            this.Text = "Tồn PI UK";
             this.Load += new System.EventHandler(this.TonPI_UK_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

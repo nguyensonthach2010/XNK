@@ -389,7 +389,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "Vattu";
-            this.Text = "Vattu";
+            this.Text = "Vật tư";
             this.Load += new System.EventHandler(this.Vattu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager2)).EndInit();

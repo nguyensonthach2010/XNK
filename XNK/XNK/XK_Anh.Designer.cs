@@ -651,7 +651,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "XK_Anh";
-            this.Text = "XK_Anh";
+            this.Text = "Xuất khẩu Anh";
             this.Load += new System.EventHandler(this.XK_Anh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();

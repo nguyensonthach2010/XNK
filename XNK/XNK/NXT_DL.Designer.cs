@@ -724,7 +724,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "NXT_DL";
-            this.Text = "NXT_DL";
+            this.Text = "NXT Đài Loan";
             this.Load += new System.EventHandler(this.NXT_DL_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();

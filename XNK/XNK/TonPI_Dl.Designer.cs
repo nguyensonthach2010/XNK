@@ -613,7 +613,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Name = "TonPI_Dl";
-            this.Text = "TonPI_Dl";
+            this.Text = "Tồn PT Đài Loan";
             this.Load += new System.EventHandler(this.TonPI_Dl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

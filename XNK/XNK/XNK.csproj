@@ -246,6 +246,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NXT_DL.resx">
       <DependentUpon>NXT_DL.cs</DependentUpon>
     </EmbeddedResource>

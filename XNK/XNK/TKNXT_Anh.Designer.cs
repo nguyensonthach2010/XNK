@@ -605,7 +605,7 @@
             this.ClientSize = new System.Drawing.Size(1149, 608);
             this.Controls.Add(this.gridControl1);
             this.Name = "TKNXT_Anh";
-            this.Text = "TKNXT_Anh";
+            this.Text = "Thống kê NXT Anh";
             this.Load += new System.EventHandler(this.TKNXT_Anh_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridView1)).EndInit();

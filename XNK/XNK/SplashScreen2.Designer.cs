@@ -74,7 +74,7 @@
             // peLogo
             // 
             this.peLogo.EditValue = ((object)(resources.GetObject("peLogo.EditValue")));
-            this.peLogo.Location = new System.Drawing.Point(330, 282);
+            this.peLogo.Location = new System.Drawing.Point(326, 276);
             this.peLogo.Name = "peLogo";
             this.peLogo.Properties.AllowFocused = false;
             this.peLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -87,12 +87,12 @@
             // 
             // labelCopyright
             // 
-            this.labelCopyright.Appearance.Font = new System.Drawing.Font("Vineta BT", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCopyright.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCopyright.Appearance.Options.UseFont = true;
             this.labelCopyright.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.labelCopyright.Location = new System.Drawing.Point(44, 153);
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(299, 20);
+            this.labelCopyright.Size = new System.Drawing.Size(293, 29);
             this.labelCopyright.TabIndex = 6;
             this.labelCopyright.Text = "Công ty cổ phần Catalan\r\n";
             // 
@@ -106,6 +106,7 @@
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.labelCopyright);
             this.Controls.Add(this.progressBarControl);
+            this.MaximizeBox = false;
             this.Name = "SplashScreen2";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).EndInit();

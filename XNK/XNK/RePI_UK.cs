@@ -21,6 +21,7 @@ namespace XNK
         private void RePI_UK_Load(object sender, EventArgs e)
         {
             LoadDT();
+            txtfob.Text = DateTime.Now.ToString("MM/dd/yyyy");
         }
         private void LoadDT()
         {
