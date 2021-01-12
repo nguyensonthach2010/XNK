@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quyentc.cs" />
     <Compile Include="ReNXT_Anh.cs">
       <SubType>Form</SubType>
     </Compile>

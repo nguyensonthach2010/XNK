@@ -236,3 +236,4 @@ C:\Users\thachns\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.WaitForm1.resources
 C:\Users\thachns\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Anh.resources
 C:\Users\thachns\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.XK_Dailoan.resources
 C:\Users\thachns\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.XK_UK.resources
+C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Login.resources

@@ -21,7 +21,7 @@ namespace XNK
             {
                 ConnectDB.connect.Open();
                 ConnectDB.connect.Close();
-                Application.Run(new Form1());
+                Application.Run(new Login());
             }
             catch
             {
