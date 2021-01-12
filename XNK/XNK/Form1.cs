@@ -194,5 +194,71 @@ namespace XNK
             nxt_uk.Text = "Nhập Xuất UK";
             nxt_uk.Show();
         }
+
+        private void barButtonItem27_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            TkTonPI_Anh nxt_uk = new TkTonPI_Anh();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Show();
+        }
+
+        private void barButtonItem28_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            TKNXT_Anh nxt_uk = new TKNXT_Anh();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Show();
+        }
+
+        private void barButtonItem29_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            tkTonPI_UK nxt_uk = new tkTonPI_UK();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Show();
+        }
+
+        private void barButtonItem30_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            TKNXT_UK nxt_uk = new TKNXT_UK();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Show();
+        }
+
+        private void barButtonItem31_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            tkTonPI_DL nxt_uk = new tkTonPI_DL();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Show();
+        }
+
+        private void barButtonItem32_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            TKNXT_DL nxt_uk = new TKNXT_DL();
+            nxt_uk.MdiParent = this;
+            nxt_uk.Show();
+        }
     }
 }
