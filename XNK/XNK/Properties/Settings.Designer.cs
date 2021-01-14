@@ -50,12 +50,12 @@ namespace XNK.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Pass {
+        public string pass {
             get {
-                return ((string)(this["Pass"]));
+                return ((string)(this["pass"]));
             }
             set {
-                this["Pass"] = value;
+                this["pass"] = value;
             }
         }
     }

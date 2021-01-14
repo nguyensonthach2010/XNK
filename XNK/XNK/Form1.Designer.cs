@@ -66,6 +66,12 @@
             this.barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem25 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem26 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageCategory2 = new DevExpress.XtraBars.Ribbon.RibbonPageCategory();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -95,12 +101,6 @@
             this.ribbonPage5 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::XNK.WaitForm1), true, true);
-            this.barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -322,6 +322,7 @@
             this.barButtonItem15.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.ImageOptions.Image")));
             this.barButtonItem15.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem15.ImageOptions.LargeImage")));
             this.barButtonItem15.Name = "barButtonItem15";
+            this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
             // 
             // barButtonItem16
             // 
@@ -426,6 +427,60 @@
             this.barButtonItem26.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem26.ImageOptions.LargeImage")));
             this.barButtonItem26.Name = "barButtonItem26";
             this.barButtonItem26.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem26_ItemClick);
+            // 
+            // barButtonItem27
+            // 
+            this.barButtonItem27.Caption = "Thống kê Tồn PI";
+            this.barButtonItem27.Id = 35;
+            this.barButtonItem27.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem27.ImageOptions.Image")));
+            this.barButtonItem27.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem27.ImageOptions.LargeImage")));
+            this.barButtonItem27.Name = "barButtonItem27";
+            this.barButtonItem27.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem27_ItemClick);
+            // 
+            // barButtonItem28
+            // 
+            this.barButtonItem28.Caption = "Thống kê NXT";
+            this.barButtonItem28.Id = 36;
+            this.barButtonItem28.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem28.ImageOptions.Image")));
+            this.barButtonItem28.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem28.ImageOptions.LargeImage")));
+            this.barButtonItem28.Name = "barButtonItem28";
+            this.barButtonItem28.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem28_ItemClick);
+            // 
+            // barButtonItem29
+            // 
+            this.barButtonItem29.Caption = "Thống kê Tồn PI";
+            this.barButtonItem29.Id = 37;
+            this.barButtonItem29.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem29.ImageOptions.Image")));
+            this.barButtonItem29.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem29.ImageOptions.LargeImage")));
+            this.barButtonItem29.Name = "barButtonItem29";
+            this.barButtonItem29.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem29_ItemClick);
+            // 
+            // barButtonItem30
+            // 
+            this.barButtonItem30.Caption = "Thống kê NXT";
+            this.barButtonItem30.Id = 38;
+            this.barButtonItem30.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem30.ImageOptions.Image")));
+            this.barButtonItem30.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem30.ImageOptions.LargeImage")));
+            this.barButtonItem30.Name = "barButtonItem30";
+            this.barButtonItem30.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem30_ItemClick);
+            // 
+            // barButtonItem31
+            // 
+            this.barButtonItem31.Caption = "Thống kê Tồn PI";
+            this.barButtonItem31.Id = 39;
+            this.barButtonItem31.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem31.ImageOptions.Image")));
+            this.barButtonItem31.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem31.ImageOptions.LargeImage")));
+            this.barButtonItem31.Name = "barButtonItem31";
+            this.barButtonItem31.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem31_ItemClick);
+            // 
+            // barButtonItem32
+            // 
+            this.barButtonItem32.Caption = "Thống kê NXT";
+            this.barButtonItem32.Id = 40;
+            this.barButtonItem32.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem32.ImageOptions.Image")));
+            this.barButtonItem32.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem32.ImageOptions.LargeImage")));
+            this.barButtonItem32.Name = "barButtonItem32";
+            this.barButtonItem32.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem32_ItemClick);
             // 
             // ribbonPageCategory2
             // 
@@ -637,60 +692,6 @@
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // barButtonItem27
-            // 
-            this.barButtonItem27.Caption = "Thống kê Tồn PI";
-            this.barButtonItem27.Id = 35;
-            this.barButtonItem27.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem27.ImageOptions.Image")));
-            this.barButtonItem27.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem27.ImageOptions.LargeImage")));
-            this.barButtonItem27.Name = "barButtonItem27";
-            this.barButtonItem27.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem27_ItemClick);
-            // 
-            // barButtonItem28
-            // 
-            this.barButtonItem28.Caption = "Thống kê NXT";
-            this.barButtonItem28.Id = 36;
-            this.barButtonItem28.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem28.ImageOptions.Image")));
-            this.barButtonItem28.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem28.ImageOptions.LargeImage")));
-            this.barButtonItem28.Name = "barButtonItem28";
-            this.barButtonItem28.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem28_ItemClick);
-            // 
-            // barButtonItem29
-            // 
-            this.barButtonItem29.Caption = "Thống kê Tồn PI";
-            this.barButtonItem29.Id = 37;
-            this.barButtonItem29.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem29.ImageOptions.Image")));
-            this.barButtonItem29.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem29.ImageOptions.LargeImage")));
-            this.barButtonItem29.Name = "barButtonItem29";
-            this.barButtonItem29.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem29_ItemClick);
-            // 
-            // barButtonItem30
-            // 
-            this.barButtonItem30.Caption = "Thống kê NXT";
-            this.barButtonItem30.Id = 38;
-            this.barButtonItem30.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem30.ImageOptions.Image")));
-            this.barButtonItem30.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem30.ImageOptions.LargeImage")));
-            this.barButtonItem30.Name = "barButtonItem30";
-            this.barButtonItem30.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem30_ItemClick);
-            // 
-            // barButtonItem31
-            // 
-            this.barButtonItem31.Caption = "Thống kê Tồn PI";
-            this.barButtonItem31.Id = 39;
-            this.barButtonItem31.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem31.ImageOptions.Image")));
-            this.barButtonItem31.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem31.ImageOptions.LargeImage")));
-            this.barButtonItem31.Name = "barButtonItem31";
-            this.barButtonItem31.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem31_ItemClick);
-            // 
-            // barButtonItem32
-            // 
-            this.barButtonItem32.Caption = "Thống kê NXT";
-            this.barButtonItem32.Id = 40;
-            this.barButtonItem32.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem32.ImageOptions.Image")));
-            this.barButtonItem32.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem32.ImageOptions.LargeImage")));
-            this.barButtonItem32.Name = "barButtonItem32";
-            this.barButtonItem32.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem32_ItemClick);
             // 
             // Form1
             // 

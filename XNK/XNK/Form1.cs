@@ -35,7 +35,7 @@ namespace XNK
         private void Form1_Load(object sender, EventArgs e)
         {
             skin();
-
+            barSubItem2.Caption = Login.tk;
         }
 
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -259,6 +259,17 @@ namespace XNK
             TKNXT_DL nxt_uk = new TKNXT_DL();
             nxt_uk.MdiParent = this;
             nxt_uk.Show();
+        }
+
+        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            Taikhoan tk = new Taikhoan();
+
+            tk.Show();
         }
     }
 }

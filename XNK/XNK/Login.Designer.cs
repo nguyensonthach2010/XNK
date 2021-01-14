@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             this.txtpass = new DevExpress.XtraEditors.TextEdit();
             this.txtuser = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -39,12 +38,13 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btncancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnlogin = new DevExpress.XtraEditors.SimpleButton();
+            this.checkEdit1 = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpass.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtuser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -61,15 +61,6 @@
             this.groupControl1.Size = new System.Drawing.Size(387, 161);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Đăng nhập hệ thống";
-            // 
-            // checkEdit1
-            // 
-            this.checkEdit1.EditValue = true;
-            this.checkEdit1.Location = new System.Drawing.Point(16, 136);
-            this.checkEdit1.Name = "checkEdit1";
-            this.checkEdit1.Properties.Caption = "Nhớ mật khẩu";
-            this.checkEdit1.Size = new System.Drawing.Size(136, 20);
-            this.checkEdit1.TabIndex = 6;
             // 
             // txtpass
             // 
@@ -153,8 +144,20 @@
             this.btnlogin.Text = "Đăng nhập";
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
+            // checkEdit1
+            // 
+            this.checkEdit1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkEdit1.EditValue = true;
+            this.checkEdit1.Location = new System.Drawing.Point(16, 121);
+            this.checkEdit1.Name = "checkEdit1";
+            this.checkEdit1.Properties.Caption = "Nhớ mật khẩu";
+            this.checkEdit1.Properties.CheckBoxOptions.Style = DevExpress.XtraEditors.Controls.CheckBoxStyle.SvgHeart2;
+            this.checkEdit1.Size = new System.Drawing.Size(102, 22);
+            this.checkEdit1.TabIndex = 4;
+            // 
             // Login
             // 
+            this.AcceptButton = this.btnlogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(673, 270);
@@ -165,15 +168,15 @@
             this.Controls.Add(this.groupControl1);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Đăng Nhập";
             this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpass.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtuser.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,7 +185,6 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.CheckEdit checkEdit1;
         private DevExpress.XtraEditors.TextEdit txtpass;
         private DevExpress.XtraEditors.TextEdit txtuser;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -191,5 +193,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.SimpleButton btncancel;
         private DevExpress.XtraEditors.SimpleButton btnlogin;
+        private DevExpress.XtraEditors.CheckEdit checkEdit1;
     }
 }

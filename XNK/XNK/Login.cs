@@ -28,15 +28,15 @@ namespace XNK
         }
         private void Login_Load(object sender, EventArgs e)
         {
-
-            txtuser.Text = Properties.Settings.Default.user;
-            txtpass.Text = Properties.Settings.Default.Pass;
+           txtuser.Text= Properties.Settings.Default.user;
+            txtpass.Text= Properties.Settings.Default.pass ;
         }
         public static string tk = "";
         private void btnlogin_Click(object sender, EventArgs e)
         {
             try
             {
+
                 if (validate())  //kiểm tra dữ liệu 
                 {
 
@@ -46,6 +46,8 @@ namespace XNK
                     if (data.Rows.Count <= 0)
                     {
                         XtraMessageBox.Show("Tài khoản hoắc mật khẩu không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Properties.Settings.Default.user = "";
+                        Properties.Settings.Default.pass = "";
                     }
                     else  //nếu số dòng lấy được > 0 thì :
                         if (data.Rows[0]["trangthai"].ToString() == "Active") // kiểm tra dữ liệu cột trạng thái trong sql nếu là Active thì mới được quyền truy cập
@@ -70,13 +72,13 @@ namespace XNK
             {
                 // kiểm tra nếu chọn nhớ mật khẩu thì ghi lại user và pass không thì để trống
                 Properties.Settings.Default.user = txtuser.Text;
-                Properties.Settings.Default.Pass = txtpass.Text;
+                Properties.Settings.Default.pass = txtpass.Text;
                 Properties.Settings.Default.Save();
             }
             else
             {
                 Properties.Settings.Default.user = "";
-                Properties.Settings.Default.Pass = "";
+                Properties.Settings.Default.pass = "";
                 Properties.Settings.Default.Save();
             }
         }

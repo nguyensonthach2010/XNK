@@ -42,8 +42,9 @@
             // progressBarControl
             // 
             this.progressBarControl.EditValue = 0;
-            this.progressBarControl.Location = new System.Drawing.Point(23, 231);
+            this.progressBarControl.Location = new System.Drawing.Point(23, 237);
             this.progressBarControl.Name = "progressBarControl";
+            this.progressBarControl.Properties.ProgressAnimationMode = DevExpress.Utils.Drawing.ProgressAnimationMode.Cycle;
             this.progressBarControl.Size = new System.Drawing.Size(404, 20);
             this.progressBarControl.TabIndex = 5;
             // 
@@ -74,7 +75,7 @@
             // peLogo
             // 
             this.peLogo.EditValue = ((object)(resources.GetObject("peLogo.EditValue")));
-            this.peLogo.Location = new System.Drawing.Point(326, 276);
+            this.peLogo.Location = new System.Drawing.Point(352, 276);
             this.peLogo.Name = "peLogo";
             this.peLogo.Properties.AllowFocused = false;
             this.peLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -82,7 +83,7 @@
             this.peLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.peLogo.Properties.ShowMenu = false;
             this.peLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.peLogo.Size = new System.Drawing.Size(119, 37);
+            this.peLogo.Size = new System.Drawing.Size(93, 37);
             this.peLogo.TabIndex = 8;
             // 
             // labelCopyright
@@ -90,7 +91,7 @@
             this.labelCopyright.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCopyright.Appearance.Options.UseFont = true;
             this.labelCopyright.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labelCopyright.Location = new System.Drawing.Point(44, 153);
+            this.labelCopyright.Location = new System.Drawing.Point(40, 150);
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(293, 29);
             this.labelCopyright.TabIndex = 6;
@@ -108,6 +109,7 @@
             this.Controls.Add(this.progressBarControl);
             this.MaximizeBox = false;
             this.Name = "SplashScreen2";
+            this.Opacity = 0.9D;
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.peImage.Properties)).EndInit();
