@@ -82,5 +82,10 @@ namespace XNK
                 Properties.Settings.Default.Save();
             }
         }
+
+        private void btncancel_Click(object sender, EventArgs e)
+        {
+                Application.Exit();
+        }
     }
 }

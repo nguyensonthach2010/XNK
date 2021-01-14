@@ -50,7 +50,7 @@ namespace XNK
             for (int i = 1; i <= 100; i++)
             {
                 SplashScreenManager.Default.SetWaitFormDescription(i.ToString() + "%");
-                Thread.Sleep(5);
+                Thread.Sleep(4);
             }
             SplashScreenManager.CloseForm(false);
 
@@ -270,6 +270,24 @@ namespace XNK
             Taikhoan tk = new Taikhoan();
 
             tk.Show();
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult thongbao = XtraMessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (thongbao == DialogResult.Yes)
+                Application.Exit();
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult thongbao = XtraMessageBox.Show("Bạn muốn đăng xuất tài khoản?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (thongbao == DialogResult.Yes)
+            {
+                this.Visible = false;
+                new Login().ShowDialog();
+            }
+
         }
     }
 }

@@ -91,7 +91,7 @@
             this.labelCopyright.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCopyright.Appearance.Options.UseFont = true;
             this.labelCopyright.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labelCopyright.Location = new System.Drawing.Point(40, 150);
+            this.labelCopyright.Location = new System.Drawing.Point(23, 151);
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(293, 29);
             this.labelCopyright.TabIndex = 6;
@@ -109,7 +109,8 @@
             this.Controls.Add(this.progressBarControl);
             this.MaximizeBox = false;
             this.Name = "SplashScreen2";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.2D;
+            this.SplashImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("SplashScreen2.SplashImageOptions.Image")));
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.progressBarControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.peImage.Properties)).EndInit();
