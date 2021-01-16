@@ -102,6 +102,7 @@
             // 
             this.txtmk.Location = new System.Drawing.Point(80, 117);
             this.txtmk.Name = "txtmk";
+            this.txtmk.Properties.ReadOnly = true;
             this.txtmk.Size = new System.Drawing.Size(135, 20);
             this.txtmk.StyleController = this.layoutControl1;
             this.txtmk.TabIndex = 7;
@@ -110,6 +111,7 @@
             // 
             this.txttk.Location = new System.Drawing.Point(80, 93);
             this.txttk.Name = "txttk";
+            this.txttk.Properties.ReadOnly = true;
             this.txttk.Size = new System.Drawing.Size(135, 20);
             this.txttk.StyleController = this.layoutControl1;
             this.txttk.TabIndex = 6;

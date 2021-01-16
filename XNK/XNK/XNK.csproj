@@ -500,6 +500,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\Ephoto360.com_16002a800ae413.jpg" />
+    <None Include="Resources\Ephoto360.com_16002a5b9333bb.jpg" />
     <None Include="Resources\Picture3.png" />
     <None Include="Resources\Picture4.jpg" />
   </ItemGroup>

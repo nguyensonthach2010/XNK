@@ -450,3 +450,5 @@ C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Wickes.resources
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Wickes_Verona.resources
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Thamchieuin.resources
 C:\Users\thangbv\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.DMK.resources
+C:\Users\thachns\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.DMK.resources
+C:\Users\thachns\Source\Repos\XNK\XNK\XNK\obj\Debug\XNK.Thamchieuin.resources

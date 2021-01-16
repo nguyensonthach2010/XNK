@@ -44,6 +44,7 @@
             this.progressBarControl.EditValue = 0;
             this.progressBarControl.Location = new System.Drawing.Point(23, 237);
             this.progressBarControl.Name = "progressBarControl";
+            this.progressBarControl.Properties.MarqueeAnimationSpeed = 20;
             this.progressBarControl.Properties.ProgressAnimationMode = DevExpress.Utils.Drawing.ProgressAnimationMode.Cycle;
             this.progressBarControl.Size = new System.Drawing.Size(404, 20);
             this.progressBarControl.TabIndex = 5;
@@ -68,7 +69,7 @@
             this.peImage.Properties.Appearance.Options.UseBackColor = true;
             this.peImage.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.peImage.Properties.ShowMenu = false;
-            this.peImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.peImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
             this.peImage.Size = new System.Drawing.Size(426, 116);
             this.peImage.TabIndex = 9;
             // 
@@ -91,7 +92,7 @@
             this.labelCopyright.Appearance.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCopyright.Appearance.Options.UseFont = true;
             this.labelCopyright.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.labelCopyright.Location = new System.Drawing.Point(23, 151);
+            this.labelCopyright.Location = new System.Drawing.Point(54, 146);
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(293, 29);
             this.labelCopyright.TabIndex = 6;

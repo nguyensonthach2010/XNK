@@ -36,7 +36,7 @@ namespace XNK
         {
             skin();
             taikhoan = Login.tk;
-            barSubItem2.Caption = "Welcome" + taikhoan + " !";
+            barSubItem2.Caption =  taikhoan;
         }
 
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
