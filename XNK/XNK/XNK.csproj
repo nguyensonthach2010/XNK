@@ -101,6 +101,12 @@
       <DependentUpon>Connect.cs</DependentUpon>
     </Compile>
     <Compile Include="ConnectDB.cs" />
+    <Compile Include="DMK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DMK.Designer.cs">
+      <DependentUpon>DMK.cs</DependentUpon>
+    </Compile>
     <Compile Include="EJKTiles.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -214,6 +220,12 @@
     </Compile>
     <Compile Include="Taikhoan.Designer.cs">
       <DependentUpon>Taikhoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Thamchieuin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Thamchieuin.Designer.cs">
+      <DependentUpon>Thamchieuin.cs</DependentUpon>
     </Compile>
     <Compile Include="TileGiant.cs">
       <SubType>Component</SubType>
@@ -332,6 +344,9 @@
     <EmbeddedResource Include="Connect.resx">
       <DependentUpon>Connect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DMK.resx">
+      <DependentUpon>DMK.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EJKTiles.resx">
       <DependentUpon>EJKTiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Taikhoan.resx">
       <DependentUpon>Taikhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Thamchieuin.resx">
+      <DependentUpon>Thamchieuin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TileGiant.resx">
       <DependentUpon>TileGiant.cs</DependentUpon>

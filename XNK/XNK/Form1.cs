@@ -31,11 +31,12 @@ namespace XNK
             DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             themes.LookAndFeel.SkinName = "Valentine"; // cài đặt giao diện mặc định của form
         }
-
+        public static string taikhoan = "";
         private void Form1_Load(object sender, EventArgs e)
         {
             skin();
-            barSubItem2.Caption = Login.tk;
+            taikhoan = Login.tk;
+            barSubItem2.Caption = "Welcome" + taikhoan + " !";
         }
 
         private void barButtonItem16_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -292,7 +293,13 @@ namespace XNK
 
         private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
 
+            Thamchieuin tcin = new Thamchieuin();
+            tcin.MdiParent = this;
+            tcin.Show();
         }
 
         private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -300,6 +307,17 @@ namespace XNK
             ListPrint p = new ListPrint();
             p.MdiParent = this;
             p.Show();
+        }
+
+        private void barButtonItem35_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Thread.Sleep(300);
+            splashScreenManager1.CloseWaitForm();
+
+            DMK dmk = new DMK();
+
+            dmk.Show();
         }
     }
 }
