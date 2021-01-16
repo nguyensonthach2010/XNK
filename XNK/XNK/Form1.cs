@@ -319,5 +319,14 @@ namespace XNK
 
             dmk.Show();
         }
+
+        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult thongbao = XtraMessageBox.Show("Chức năng tạm thời bị khóa ! Vui lòng đợi trong thời gian tới?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (thongbao == DialogResult.Yes)
+            {
+
+            }
+        }
     }
 }
