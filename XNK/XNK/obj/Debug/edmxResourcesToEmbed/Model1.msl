@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="XNKModelStoreContainer" CdmEntityContainer="XNKEntities1">
+    <EntitySetMapping Name="Barcodes">
+      <EntityTypeMapping TypeName="XNKModel.Barcode">
+        <MappingFragment StoreEntitySet="Barcode">
+          <ScalarProperty Name="Variant" ColumnName="Variant" />
+          <ScalarProperty Name="SUPPLIER" ColumnName="SUPPLIER" />
+          <ScalarProperty Name="POKhach" ColumnName="POKhach" />
+          <ScalarProperty Name="PO" ColumnName="PO" />
+          <ScalarProperty Name="OuterPacks" ColumnName="OuterPacks" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="TotalPallets" ColumnName="TotalPallets" />
+          <ScalarProperty Name="Barcode1" ColumnName="Barcode" />
+          <ScalarProperty Name="Bricks" ColumnName="Bricks" />
+          <ScalarProperty Name="Productcode" ColumnName="Productcode" />
+          <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+          <ScalarProperty Name="SuppliesName" ColumnName="SuppliesName" />
+          <ScalarProperty Name="Box" ColumnName="Box" />
+          <ScalarProperty Name="duoimau" ColumnName="duoimau" />
+          <ScalarProperty Name="loca" ColumnName="loca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

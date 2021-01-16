@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XNKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Barcode">
+    <Key>
+      <PropertyRef Name="Variant" />
+    </Key>
+    <Property Name="Variant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SUPPLIER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="POKhach" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OuterPacks" Type="Int32" />
+    <Property Name="Weight" Type="Double" />
+    <Property Name="TotalPallets" Type="Int32" />
+    <Property Name="Barcode1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Bricks" Type="Double" />
+    <Property Name="Productcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ProductNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SuppliesName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Box" Type="Double" />
+    <Property Name="duoimau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="loca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="XNKEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Barcodes" EntityType="Self.Barcode" />
+  </EntityContainer>
+</Schema>

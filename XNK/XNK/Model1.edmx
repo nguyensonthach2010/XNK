@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="XNKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XNK.dbo.Barcode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Barcode">
+          <Key>
+            <PropertyRef Name="Variant" />
+          </Key>
+          <Property Name="Variant" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SUPPLIER" Type="varchar" MaxLength="255" />
+          <Property Name="POKhach" Type="varchar" MaxLength="255" />
+          <Property Name="PO" Type="varchar" MaxLength="50" />
+          <Property Name="OuterPacks" Type="int" />
+          <Property Name="Weight" Type="float" />
+          <Property Name="TotalPallets" Type="int" />
+          <Property Name="Barcode" Type="varchar" MaxLength="255" />
+          <Property Name="Bricks" Type="float" />
+          <Property Name="Productcode" Type="varchar" MaxLength="255" />
+          <Property Name="ProductNumber" Type="varchar" MaxLength="255" />
+          <Property Name="SuppliesName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Box" Type="float" />
+          <Property Name="duoimau" Type="varchar" MaxLength="255" />
+          <Property Name="loca" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="XNKModelStoreContainer">
+          <EntitySet Name="Barcode" EntityType="Self.Barcode" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Barcode].[Variant] AS [Variant], 
+[Barcode].[SUPPLIER] AS [SUPPLIER], 
+[Barcode].[POKhach] AS [POKhach], 
+[Barcode].[PO] AS [PO], 
+[Barcode].[OuterPacks] AS [OuterPacks], 
+[Barcode].[Weight] AS [Weight], 
+[Barcode].[TotalPallets] AS [TotalPallets], 
+[Barcode].[Barcode] AS [Barcode], 
+[Barcode].[Bricks] AS [Bricks], 
+[Barcode].[Productcode] AS [Productcode], 
+[Barcode].[ProductNumber] AS [ProductNumber], 
+[Barcode].[SuppliesName] AS [SuppliesName], 
+[Barcode].[Box] AS [Box], 
+[Barcode].[duoimau] AS [duoimau], 
+[Barcode].[loca] AS [loca]
+FROM [dbo].[Barcode] AS [Barcode]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XNKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Barcode">
+          <Key>
+            <PropertyRef Name="Variant" />
+          </Key>
+          <Property Name="Variant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUPPLIER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="POKhach" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OuterPacks" Type="Int32" />
+          <Property Name="Weight" Type="Double" />
+          <Property Name="TotalPallets" Type="Int32" />
+          <Property Name="Barcode1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Bricks" Type="Double" />
+          <Property Name="Productcode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProductNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SuppliesName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Box" Type="Double" />
+          <Property Name="duoimau" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="loca" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="XNKEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Barcodes" EntityType="Self.Barcode" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XNKModelStoreContainer" CdmEntityContainer="XNKEntities1">
+          <EntitySetMapping Name="Barcodes">
+            <EntityTypeMapping TypeName="XNKModel.Barcode">
+              <MappingFragment StoreEntitySet="Barcode">
+                <ScalarProperty Name="Variant" ColumnName="Variant" />
+                <ScalarProperty Name="SUPPLIER" ColumnName="SUPPLIER" />
+                <ScalarProperty Name="POKhach" ColumnName="POKhach" />
+                <ScalarProperty Name="PO" ColumnName="PO" />
+                <ScalarProperty Name="OuterPacks" ColumnName="OuterPacks" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="TotalPallets" ColumnName="TotalPallets" />
+                <ScalarProperty Name="Barcode1" ColumnName="Barcode" />
+                <ScalarProperty Name="Bricks" ColumnName="Bricks" />
+                <ScalarProperty Name="Productcode" ColumnName="Productcode" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="SuppliesName" ColumnName="SuppliesName" />
+                <ScalarProperty Name="Box" ColumnName="Box" />
+                <ScalarProperty Name="duoimau" ColumnName="duoimau" />
+                <ScalarProperty Name="loca" ColumnName="loca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

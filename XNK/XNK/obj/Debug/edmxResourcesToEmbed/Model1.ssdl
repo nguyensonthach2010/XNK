@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="XNKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'XNK.dbo.Barcode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Barcode">
+    <Key>
+      <PropertyRef Name="Variant" />
+    </Key>
+    <Property Name="Variant" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SUPPLIER" Type="varchar" MaxLength="255" />
+    <Property Name="POKhach" Type="varchar" MaxLength="255" />
+    <Property Name="PO" Type="varchar" MaxLength="50" />
+    <Property Name="OuterPacks" Type="int" />
+    <Property Name="Weight" Type="float" />
+    <Property Name="TotalPallets" Type="int" />
+    <Property Name="Barcode" Type="varchar" MaxLength="255" />
+    <Property Name="Bricks" Type="float" />
+    <Property Name="Productcode" Type="varchar" MaxLength="255" />
+    <Property Name="ProductNumber" Type="varchar" MaxLength="255" />
+    <Property Name="SuppliesName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Box" Type="float" />
+    <Property Name="duoimau" Type="varchar" MaxLength="255" />
+    <Property Name="loca" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityContainer Name="XNKModelStoreContainer">
+    <EntitySet Name="Barcode" EntityType="Self.Barcode" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Barcode].[Variant] AS [Variant], 
+[Barcode].[SUPPLIER] AS [SUPPLIER], 
+[Barcode].[POKhach] AS [POKhach], 
+[Barcode].[PO] AS [PO], 
+[Barcode].[OuterPacks] AS [OuterPacks], 
+[Barcode].[Weight] AS [Weight], 
+[Barcode].[TotalPallets] AS [TotalPallets], 
+[Barcode].[Barcode] AS [Barcode], 
+[Barcode].[Bricks] AS [Bricks], 
+[Barcode].[Productcode] AS [Productcode], 
+[Barcode].[ProductNumber] AS [ProductNumber], 
+[Barcode].[SuppliesName] AS [SuppliesName], 
+[Barcode].[Box] AS [Box], 
+[Barcode].[duoimau] AS [duoimau], 
+[Barcode].[loca] AS [loca]
+FROM [dbo].[Barcode] AS [Barcode]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

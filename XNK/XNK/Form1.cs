@@ -289,5 +289,17 @@ namespace XNK
             }
 
         }
+
+        private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ListPrint p = new ListPrint();
+            p.MdiParent = this;
+            p.Show();
+        }
     }
 }
