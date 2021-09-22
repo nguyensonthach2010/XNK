@@ -43,11 +43,11 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.gridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemSpinEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.gridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.repositoryItemSpinEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.gridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.gridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -77,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
@@ -97,7 +98,8 @@
             this.repositoryItemDateEdit1,
             this.repositoryItemSpinEdit1,
             this.repositoryItemSpinEdit2,
-            this.repositoryItemSpinEdit3});
+            this.repositoryItemSpinEdit3,
+            this.repositoryItemSpinEdit4});
             this.gridControl1.Size = new System.Drawing.Size(1109, 585);
             this.gridControl1.TabIndex = 11;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -105,10 +107,16 @@
             // 
             // gridView1
             // 
+            this.gridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.PapayaWhip;
+            this.gridView1.Appearance.EvenRow.Options.UseBackColor = true;
             this.gridView1.Appearance.GroupPanel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.gridView1.Appearance.GroupPanel.ForeColor = System.Drawing.Color.Black;
             this.gridView1.Appearance.GroupPanel.Options.UseFont = true;
             this.gridView1.Appearance.GroupPanel.Options.UseForeColor = true;
+            this.gridView1.AppearancePrint.EvenRow.BackColor = System.Drawing.Color.PapayaWhip;
+            this.gridView1.AppearancePrint.EvenRow.Options.UseBackColor = true;
+            this.gridView1.AppearancePrint.OddRow.BackColor = System.Drawing.Color.White;
+            this.gridView1.AppearancePrint.OddRow.Options.UseBackColor = true;
             this.gridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand1,
             this.Nhậpdữliệu});
@@ -125,7 +133,6 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn12,
-            this.gridColumn13,
             this.gridColumn14,
             this.gridColumn15,
             this.gridColumn16,
@@ -135,6 +142,8 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.NewItemRowText = "Nhấp vào đây để thêm dữ liệu mới";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsPrint.EnableAppearanceOddRow = true;
             this.gridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.gridView1.OptionsView.EnableAppearanceOddRow = true;
@@ -165,7 +174,6 @@
             this.gridBand1.Columns.Add(this.gridColumn11);
             this.gridBand1.Columns.Add(this.gridColumn12);
             this.gridBand1.Columns.Add(this.gridColumn6);
-            this.gridBand1.Columns.Add(this.gridColumn13);
             this.gridBand1.Columns.Add(this.gridColumn14);
             this.gridBand1.Columns.Add(this.gridColumn7);
             this.gridBand1.Columns.Add(this.gridColumn8);
@@ -174,7 +182,7 @@
             this.gridBand1.Columns.Add(this.gridColumn17);
             this.gridBand1.Name = "gridBand1";
             this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 1074;
+            this.gridBand1.Width = 935;
             // 
             // gridColumn1
             // 
@@ -196,7 +204,7 @@
             this.gridColumn2.FieldName = "sodonsx";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.Width = 58;
+            this.gridColumn2.Width = 53;
             // 
             // gridColumn3
             // 
@@ -212,7 +220,7 @@
             this.gridColumn3.FieldName = "PI";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.Width = 95;
+            this.gridColumn3.Width = 64;
             // 
             // gridColumn4
             // 
@@ -228,7 +236,7 @@
             this.gridColumn4.FieldName = "PSI_ref";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.Width = 103;
+            this.gridColumn4.Width = 73;
             // 
             // gridColumn5
             // 
@@ -244,7 +252,6 @@
             this.gridColumn5.FieldName = "ContractNo";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.Width = 82;
             // 
             // gridColumn11
             // 
@@ -261,7 +268,7 @@
             this.gridColumn11.FieldName = "khachhang";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.Width = 107;
+            this.gridColumn11.Width = 86;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -284,12 +291,11 @@
             this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn12.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn12.Caption = "VariantPI";
+            this.gridColumn12.Caption = "Catalan Code";
             this.gridColumn12.ColumnEdit = this.repositoryItemLookUpEdit2;
             this.gridColumn12.FieldName = "VariantPI";
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
-            this.gridColumn12.Width = 84;
             // 
             // repositoryItemLookUpEdit2
             // 
@@ -326,24 +332,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.ReadOnly = true;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.Width = 157;
-            // 
-            // gridColumn13
-            // 
-            this.gridColumn13.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn13.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.gridColumn13.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn13.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn13.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.gridColumn13.Caption = "Catalan Code";
-            this.gridColumn13.FieldName = "CatalanCode";
-            this.gridColumn13.Name = "gridColumn13";
-            this.gridColumn13.OptionsColumn.ReadOnly = true;
-            this.gridColumn13.Visible = true;
-            this.gridColumn13.Width = 72;
+            this.gridColumn6.Width = 216;
             // 
             // gridColumn14
             // 
@@ -360,7 +349,7 @@
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.ReadOnly = true;
             this.gridColumn14.Visible = true;
-            this.gridColumn14.Width = 57;
+            this.gridColumn14.Width = 52;
             // 
             // gridColumn7
             // 
@@ -377,7 +366,7 @@
             this.gridColumn7.FieldName = "price";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.Width = 40;
+            this.gridColumn7.Width = 36;
             // 
             // repositoryItemSpinEdit2
             // 
@@ -397,10 +386,20 @@
             this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn8.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.gridColumn8.Caption = "Pallets theo PI";
+            this.gridColumn8.ColumnEdit = this.repositoryItemSpinEdit4;
             this.gridColumn8.FieldName = "pallet_pi";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.Width = 65;
+            this.gridColumn8.Width = 59;
+            // 
+            // repositoryItemSpinEdit4
+            // 
+            this.repositoryItemSpinEdit4.AutoHeight = false;
+            this.repositoryItemSpinEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSpinEdit4.IsFloatValue = false;
+            this.repositoryItemSpinEdit4.Mask.EditMask = "N00";
+            this.repositoryItemSpinEdit4.Name = "repositoryItemSpinEdit4";
             // 
             // gridColumn9
             // 
@@ -419,7 +418,6 @@
             this.gridColumn9.FieldName = "POB_Date";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.Width = 82;
             // 
             // repositoryItemDateEdit1
             // 
@@ -448,7 +446,7 @@
             this.gridColumn10.FieldName = "amount";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.Width = 72;
+            this.gridColumn10.Width = 71;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -467,7 +465,9 @@
             // 
             // Nhậpdữliệu
             // 
+            this.Nhậpdữliệu.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Nhậpdữliệu.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nhậpdữliệu.AppearanceHeader.Options.UseBackColor = true;
             this.Nhậpdữliệu.AppearanceHeader.Options.UseFont = true;
             this.Nhậpdữliệu.AppearanceHeader.Options.UseTextOptions = true;
             this.Nhậpdữliệu.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -478,14 +478,18 @@
             this.Nhậpdữliệu.Name = "Nhậpdữliệu";
             this.Nhậpdữliệu.RowCount = 2;
             this.Nhậpdữliệu.VisibleIndex = 1;
-            this.Nhậpdữliệu.Width = 108;
+            this.Nhậpdữliệu.Width = 84;
             // 
             // gridColumn15
             // 
+            this.gridColumn15.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.gridColumn15.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn15.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn15.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn15.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.gridColumn15.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridColumn15.AppearanceHeader.Options.UseBackColor = true;
             this.gridColumn15.AppearanceHeader.Options.UseFont = true;
             this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -495,14 +499,18 @@
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.ReadOnly = true;
             this.gridColumn15.Visible = true;
-            this.gridColumn15.Width = 57;
+            this.gridColumn15.Width = 42;
             // 
             // gridColumn16
             // 
+            this.gridColumn16.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.gridColumn16.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn16.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn16.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn16.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.gridColumn16.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.gridColumn16.AppearanceHeader.Options.UseBackColor = true;
             this.gridColumn16.AppearanceHeader.Options.UseFont = true;
             this.gridColumn16.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -512,7 +520,7 @@
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.ReadOnly = true;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.Width = 51;
+            this.gridColumn16.Width = 42;
             // 
             // repositoryItemSpinEdit3
             // 
@@ -695,6 +703,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
@@ -710,7 +719,6 @@
 
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView gridView1;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn2;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn3;
@@ -721,7 +729,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn12;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn6;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn13;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn14;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn7;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit2;
@@ -731,7 +738,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn10;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn17;
-        private DevExpress.XtraGrid.Views.BandedGrid.GridBand Nhậpdữliệu;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn15;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn16;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit3;
@@ -750,5 +756,8 @@
         private DevExpress.XtraBars.BarDockControl barDockControl4;
         private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.Bar bar2;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.GridBand Nhậpdữliệu;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit4;
     }
 }

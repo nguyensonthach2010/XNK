@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid;
+using DevExpress.XtraPrinting;
+using DevExpress.Export;
 
 namespace XNK
 {
@@ -33,7 +35,7 @@ namespace XNK
 
                 switch (e.Column.Caption.ToString())
                 {
-                    case "Variant":
+                    case "Verona Code":
 
                         view.SetRowCellValue(e.RowHandle, "Box", "");
                         string cellValue4 = "" + tb.Rows[0]["Box"].ToString().Trim() + "" + view.GetRowCellValue(e.RowHandle, "Box").ToString();
@@ -46,6 +48,7 @@ namespace XNK
                         view.SetRowCellValue(e.RowHandle, "M2", "");
                         string cellValue1 = "" + tb.Rows[0]["M2"].ToString().Trim() + "" + view.GetRowCellValue(e.RowHandle, "M2").ToString();
                         view.SetRowCellValue(e.RowHandle, "M2", cellValue1);
+
                         break;
 
                     case "Pallets":
@@ -80,7 +83,7 @@ namespace XNK
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
-                sErr = sErr + "Vui lòng điền đầy đủ thông tin!! Nhấn OK để load lại form nhập!!";
+                sErr = sErr + "Hãy điền đầy đủ thông tin!!";
             }
 
             if (bVali)
@@ -141,21 +144,17 @@ namespace XNK
             else
             {
                 e.Valid = false;
-                DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (tb == DialogResult.OK)
-                {
-                    // load lại form
-                    LoadData();
-                }
+                XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
 
             if (e.KeyCode == Keys.Delete && gridView1.State != DevExpress.XtraGrid.Views.Grid.GridState.Editing)
             {
+                string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
+
                 DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (tb == DialogResult.Yes)
                 {
@@ -182,6 +181,14 @@ namespace XNK
                     LoadData();
                 }
             }
+            if (e.KeyCode == Keys.F5)
+            {
+                LoadData();
+            }
+            if (e.Control && e.KeyCode == Keys.P)
+            {
+                Exporting();
+            }
         }
 
         private void XK_UK_Load(object sender, EventArgs e)
@@ -194,7 +201,7 @@ namespace XNK
             try
             {
                 Load_lookupedit();
-                string sql = "select stt, kh,xe, ngaydong,sttcont,pokhach,Supplies.CatalanCode,pocatalan,XuatK.Variant,palles,Box, (Box*palles) as tonghop, M2, (Box*palles*M2) as tongm2,duoimau,loca, vitri,socont, sochi,note,nuoc from XuatK inner join Supplies on Supplies.Variant = XuatK.Variant order by xe ASC, ngaydong ASC, sttcont ASC ";
+                string sql = "select stt, kh,xe, ngaydong,sttcont,pokhach,Supplies.CatalanCode,pocatalan,XuatK.Variant,palles,Box, (Box*palles) as tonghop, M2, (Box*palles*M2) as tongm2,duoimau,loca, vitri,socont, sochi,note,nuoc from XuatK inner join Supplies on Supplies.Variant = XuatK.Variant where nuoc='UK' order by xe ASC, ngaydong ASC, sttcont ASC ";
                 gridControl1.DataSource = ConnectDB.getTable(sql);
             }
             catch
@@ -219,18 +226,37 @@ namespace XNK
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Exporting();
+        }
+        private void Exporting()
+        {
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
-                string sql = "select stt, kh,xe, ngaydong,sttcont,pokhach,Supplies.CatalanCode,pocatalan,XuatK.Variant,palles,Box, (Box*palles) as tonghop, M2, (Box*palles*M2) as tongm2,duoimau,loca, vitri,socont, sochi,note,nuoc from XuatK inner join Supplies on Supplies.Variant = XuatK.Variant order by xe ASC, ngaydong ASC, sttcont ASC ";
                 SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
                 saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
                 if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
                 {
                     string exportFilePath = saveFileDialogExcel.FileName;
-                    gridControl1.DataSource = ConnectDB.getTable(sql);
-                    gridControl1.ExportToXlsx(exportFilePath);
+                    gridView1.ColumnPanelRowHeight = 40;
+                    gridView1.OptionsPrint.AutoWidth = AutoSize;
+                    gridView1.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView1.OptionsPrint.ShowPrintExportProgress = true;
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFile;
+                    options.SheetName = "XK UK";
+                    ExportSettings.DefaultExportType = ExportType.WYSIWYG;
+                    gridView1.ExportToXlsx(exportFilePath, options);
+                    //gridControl1.DataSource = ConnectDB.getTable(sql3);
+                    //gridControl1.ExportToXlsx(exportFilePath);
                     XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (XtraMessageBox.Show("Mở File xuất?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                        prc.StartInfo.FileName = exportFilePath;
+                        prc.Start();
+                    }
                 }
             }
             catch
@@ -299,7 +325,6 @@ namespace XNK
         private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
-
         }
     }
 }

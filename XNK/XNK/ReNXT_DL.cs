@@ -22,7 +22,7 @@ namespace XNK
         {
             try
             {
-                string insert = "insert into NXT values ('" + txtnamsx.Text + "','" + Convert.ToDateTime(txtngaynhap.Text).ToString("MM/dd/yyyy") + "',N'" + txtkho.Text + "',N'" + txtvitri.Text + "','" + txtmacode.Text + "','" + txtduoimau.Text + "','" + txtloca.Text + "','" + txtslgia.Value + "','" + txtslhop.Text + "','" + txtdnxl.Text + "','" + Convert.ToDateTime(txtfob.Text).ToString("MM/dd/yyyy") + "','" + txtslgiax.Text + "',N'Đài loan','" + txtslhopx.Text + "')";
+                string insert = "insert into NXT values ('" + txtnamsx.Text + "','" + Convert.ToDateTime(txtngaynhap.Text).ToString("MM/dd/yyyy") + "',N'" + txtkho.Text + "',N'" + txtvitri.Text + "','" + txtmacode.Text + "','" + txtduoimau.Text + "',N'" + txtloca.Text + "','" + txtslgia.Value + "','" + txtslhop.Text + "','" + txtdnxl.Text + "','" + Convert.ToDateTime(txtfob.Text).ToString("MM/dd/yyyy") + "','" + txtslgiax.Text + "',N'Đài Loan','" + txtslhopx.Text + "')";
                 ConnectDB.Query(insert);
                 DialogResult tb = XtraMessageBox.Show("Đã thêm. Hãy bấm F5 ở form NXT để load lại dữ liệu !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (tb == DialogResult.OK)
@@ -48,7 +48,14 @@ namespace XNK
             txtduoimau.Value = Convert.ToInt32(NXT_DL.duoimau);
             txtslgia.Value = Convert.ToInt32(NXT_DL.slgia);
             txtslhop.Value = Convert.ToInt32(NXT_DL.slhop);
-            txtngaynhap.Text = Convert.ToDateTime(NXT_DL.ngaynhap).ToString("MM/dd/yyyy");
+            if (NXT_DL.ngaynhap == "")
+            {
+                txtngaynhap.Text = NXT_DL.ngaynhap;
+            }
+            else
+            {
+                txtngaynhap.Text = Convert.ToDateTime(NXT_DL.ngaynhap).ToString("MM/dd/yyyy");
+            }
             txtnamsx.Text = NXT_DL.namsx;
             txtvitri.Text = NXT_DL.vitri;
             txtmacode.Text = NXT_DL.ctlcode;

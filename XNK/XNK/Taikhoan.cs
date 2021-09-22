@@ -34,12 +34,7 @@ namespace XNK
             try
             {
                 string sql = "select NhanVien.* from NhanVien";
-
-
-
-
                 gridControl1.DataSource = ConnectDB.getTable(sql);
-
             }
             catch
             {
@@ -59,16 +54,26 @@ namespace XNK
             {
                 if (validate())
                 {
-                    string sql = "insert into NhanVien values('" + txtmnv.Text + "','" + txttnv.Text + "','" + txtttk.Text + "','" + txtmk.Text + "','" + txtqtc.Text + "','" + txttthd.Text + "')";
+                    string sql1 = "select*from NhanVien where username ='" + txtttk.Text + "'";
+                    DataTable tb = ConnectDB.getTable(sql1);
 
-                    if (ConnectDB.Query(sql) == -1)
+                    if(tb.Rows.Count<=0)
                     {
-                        XtraMessageBox.Show("Thêm không thành công tài khoản !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string sql = "insert into NhanVien values('" + txtmnv.Text + "',N'" + txttnv.Text + "','" + txtttk.Text + "','" + txtmk.Text + "',N'" + txtqtc.Text + "',N'" + txttthd.Text + "')";
+
+                        if (ConnectDB.Query(sql) == -1)
+                        {
+                            XtraMessageBox.Show("Thêm không thành công tài khoản !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show("Thêm thành công tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Loaddata();
+                        }
                     }
                     else
                     {
-                        XtraMessageBox.Show("Thêm thành công tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Loaddata();
+                        XtraMessageBox.Show("Username này đã tồn tại, hãy nhập username khác!!");
                     }
                 }
             }
@@ -86,10 +91,10 @@ namespace XNK
             txtmk.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "password").ToString();
             txtqtc.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "quyentc").ToString();
             txttthd.Text = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "trangthai").ToString();
-            txtmnv.Enabled = true;
+            txtmnv.Enabled = false;
             txttnv.Enabled = true;
-            txtttk.Enabled = true;
-            txtmk.Enabled = true;
+            txtttk.Enabled = false;
+            txtmk.Enabled = false;
             txtqtc.Enabled = true;
             txttthd.Enabled = true;
         }
@@ -100,17 +105,27 @@ namespace XNK
             {
                 if (validate())
                 {
-                    string sql = "update NhanVien set tennv ='" + txttnv.Text + "',username ='" + txtttk.Text + "',password ='" + txtmk.Text + "',quyentc ='" + txtqtc.Text + "',trangthai ='" + txttthd.Text + "' where manv = '" + txtmnv.Text + "'";
-
-                    if (ConnectDB.Query(sql) == -1)
+                    string sql1 = "select*from NhanVien where username ='" + txtttk.Text + "' and manv = '" + txtmnv.Text + "' and password ='" + txtmk.Text + "'";
+                    DataTable tb = ConnectDB.getTable(sql1);
+                    if(tb.Rows.Count <= 0)
                     {
-                        XtraMessageBox.Show("Sửa không thành công dữ liệu !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("Không tìm thấy tài khoản bạn cần sửa!!");
+                        Loaddata();
                     }
                     else
                     {
-                        XtraMessageBox.Show("Sửa thành công dữ liệu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Loaddata();
-                    }
+                        string sql = "update NhanVien set tennv =N'" + txttnv.Text + "',quyentc =N'" + txtqtc.Text + "',trangthai =N'" + txttthd.Text + "' where username ='" + txtttk.Text + "'";
+
+                        if (ConnectDB.Query(sql) == -1)
+                        {
+                            XtraMessageBox.Show("Sửa không thành công dữ liệu !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            XtraMessageBox.Show("Sửa thành công dữ liệu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Loaddata();
+                        }
+                    }    
                 }
             }
             catch
@@ -128,20 +143,29 @@ namespace XNK
                 {
                     if (validate())
                     {
-                        string sql = "delete from NhanVien where manv = '" + txtmnv.Text + "'";
-
-                        if (ConnectDB.Query(sql) == -1)
+                        string sql1 = "select*from NhanVien where username ='" + txtttk.Text + "' and manv = '" + txtmnv.Text + "' and password ='" + txtmk.Text + "'";
+                        DataTable tb1 = ConnectDB.getTable(sql1);
+                        if (tb1.Rows.Count <= 0)
                         {
-                            XtraMessageBox.Show("Xóa thông tin không thành công (T_T) !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            XtraMessageBox.Show("Không tìm thấy tài khoản bạn cần sửa!!");
+                            Loaddata();
                         }
                         else
                         {
-                            XtraMessageBox.Show("Xóa thông tin thành công (^-^)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Loaddata();
+                            string sql = "delete from NhanVien where username = '" + txtttk.Text + "'";
+
+                            if (ConnectDB.Query(sql) == -1)
+                            {
+                                XtraMessageBox.Show("Xóa thông tin không thành công (T_T) !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            else
+                            {
+                                XtraMessageBox.Show("Xóa thông tin thành công (^-^)!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Loaddata();
+                            }
                         }
                     }
                 }
-
             }
             catch
             {
@@ -153,7 +177,7 @@ namespace XNK
         {
             if (e.KeyCode == Keys.Delete && gridView1.State != DevExpress.XtraGrid.Views.Grid.GridState.Editing)
             {
-                string manv = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "manv").ToString();
+                string username = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "username").ToString();
                 DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (tb == DialogResult.Yes)
                 {
@@ -161,7 +185,7 @@ namespace XNK
                     view.DeleteRow(view.FocusedRowHandle);
                     try
                     {
-                        string delete = "delete from NhanVien where manv ='" + manv + "' ";
+                        string delete = "delete from NhanVien where username ='" + username + "' ";
 
                         ConnectDB.Query(delete);
                         Loaddata();
@@ -188,7 +212,10 @@ namespace XNK
             txtmk.Text = "";
             txttthd.Text = "";
             txtqtc.Text = "";
-            txtmnv.ReadOnly = false;
+            txtmnv.Enabled = true;
+            txtttk.Enabled = true;
+            txtmk.Enabled = true;
+
         }
         bool indicatorIcon = true;
         private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)

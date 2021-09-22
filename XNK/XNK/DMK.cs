@@ -27,23 +27,23 @@ namespace XNK
                 DataTable data = ConnectDB.getTable(sql);
                 if (data.Rows.Count <= 0)
                 {
-                    MessageBox.Show("Mật khẩu hiện tại sai !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("Mật khẩu hiện tại sai !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 if (txtmkm.Text != txtxacnhan.Text)
                 {
-                    MessageBox.Show("Xác nhận lại mật khẩu mới không đúng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show("Xác nhận lại mật khẩu mới không đúng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
                     string sql1 = @"update NhanVien set password='" + txtmkm.Text + "' where username= '" + txttk.Text + "'";
                     if (ConnectDB.Query(sql1) == -1)
                     {
-                        MessageBox.Show("Đổi mật khẩu không thành công (T_T) !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        XtraMessageBox.Show("Đổi mật khẩu không thành công (T_T) !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
-                        MessageBox.Show("Đổi mật khẩu thành công, mời bạn đăng nhập lại trong lần kế tiếp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Đổi mật khẩu thành công, mời bạn đăng nhập lại trong lần kế tiếp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Visible = false;
                     }
                 }

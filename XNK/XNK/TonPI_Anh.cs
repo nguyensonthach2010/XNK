@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid;
+using DevExpress.XtraPrinting;
+using DevExpress.Export;
 
 namespace XNK
 {
@@ -25,9 +27,8 @@ namespace XNK
             Load_lookupedit();
             try
             {
-                string sql = "SELECT [stt],[sodonsx],[PI],[PSI_ref],[price],[pallet_pi],[POB_Date],ContractNo,[nuoc],amount, khachhang,[VariantPI],[item],CatalanCode,Size,iif(pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt) > 0, amount, amount + (pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt))) AS slxuat,(SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt)) as Tongxuat,pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt) AS tonpi FROM[dbo].[Ton_PI] inner join Supplies on Supplies.Variant = Ton_PI.VariantPI where Ton_PI.nuoc = 'Anh' Order by PI asc,POB_Date desc";
+                string sql = "SELECT [stt],[sodonsx],[PI],[PSI_ref],[price],[pallet_pi],[POB_Date],ContractNo,[nuoc],amount, khachhang,[VariantPI],[item],CatalanCode,Size,iif(pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, (SuppliesName+''+Productcode), ContractNo ORDER BY POB_Date) > 0, amount, amount + (pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, (SuppliesName+''+Productcode), ContractNo ORDER BY POB_Date))) AS slxuat,(SUM(amount) OVER(PARTITION BY VariantPI, PI, (SuppliesName+''+Productcode), ContractNo ORDER BY POB_Date)) as Tongxuat,pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, (SuppliesName+''+Productcode), ContractNo ORDER BY POB_Date) AS tonpi FROM[dbo].[Ton_PI] inner join Supplies on Supplies.Variant = Ton_PI.VariantPI where Ton_PI.nuoc = 'Anh' Order by PI asc,POB_Date desc";
                 gridControl1.DataSource = ConnectDB.getTable(sql);
-
             }
             catch
             {
@@ -41,7 +42,7 @@ namespace XNK
                 string sql1 = "select Variant, CatalanCode, SuppliesName,Bricks, Size, M2,Box,Shelf,CustomerName from Supplies";
                 repositoryItemLookUpEdit2.DataSource = ConnectDB.getTable(sql1);
                 repositoryItemLookUpEdit2.ValueMember = "Variant";
-                repositoryItemLookUpEdit2.DisplayMember = "Variant";
+                repositoryItemLookUpEdit2.DisplayMember = "CatalanCode";
 
                 string sqll = "select * from KH";
                 repositoryItemLookUpEdit1.DataSource = ConnectDB.getTable(sqll);
@@ -71,21 +72,16 @@ namespace XNK
 
                 switch (e.Column.Caption.ToString())
                 {
-                    case "VariantPI":
+                    case "Catalan Code":
                         string i = tb.Rows[0]["SuppliesName"].ToString().Trim() + " " + tb.Rows[0]["Productcode"].ToString().Trim();
                         view.SetRowCellValue(e.RowHandle, "item", "");
                         string cellValue4 = "" + i + "" + view.GetRowCellValue(e.RowHandle, "item").ToString();
                         view.SetRowCellValue(e.RowHandle, "item", cellValue4);
 
-                        view.SetRowCellValue(e.RowHandle, "CatalanCode", "");
-                        string cellValue = "" + tb.Rows[0]["CatalanCode"].ToString().Trim() + "" + view.GetRowCellValue(e.RowHandle, "CatalanCode").ToString();
-                        view.SetRowCellValue(e.RowHandle, "CatalanCode", cellValue);
-
                         view.SetRowCellValue(e.RowHandle, "Size", "");
                         string cellValue1 = "" + tb.Rows[0]["Size"].ToString().Trim() + "" + view.GetRowCellValue(e.RowHandle, "Size").ToString();
                         view.SetRowCellValue(e.RowHandle, "Size", cellValue1);
                         break;
-
                 }
             }
             catch
@@ -103,7 +99,7 @@ namespace XNK
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
-                sErr = sErr + "Vui lòng điền đầy đủ thông tin!! Nhấn OK để load lại form nhập!!";
+                sErr = sErr + "Hãy điền đầy đủ thông tin!!";
             }
 
             if (bVali)
@@ -143,7 +139,7 @@ namespace XNK
                     //{
                     try
                     {
-                        string update = "update Ton_PI set sodonsx = '" + sodonsx + "',PI = '" + PI + "',POB_Date= '" + Convert.ToDateTime(POB_Date).ToString("MM/dd/yyyy") + "',PSI_ref = '" + PSI_ref + "',price = '" + price + "',pallet_pi = '" + pallet_pi + "',amount = '" + amount + "',ContractNo = '" + CTN + "',khachhang = '" + khachhang + "',VariantPI = '" + VariantPI + "',item = N'" + item + "' where stt = '" + stt + "'";
+                        string update = "update Ton_PI set sodonsx = '" + sodonsx + "',PI = '" + PI + "',POB_Date= '" + Convert.ToDateTime(POB_Date).ToString("MM/dd/yyyy") + "',PSI_ref = '" + PSI_ref + "',price = '" + price + "',pallet_pi = '" + pallet_pi + "',amount = '" + amount + "',ContractNo = '" + CTN + "',khachhang = '" + khachhang + "',VariantPI = '" + VariantPI + "',item = N'" + item + "' where stt = '" + stt + "' and nuoc ='Anh'";
                         ConnectDB.Query(update);
                         LoadData();
                     }
@@ -163,12 +159,7 @@ namespace XNK
             else
             {
                 e.Valid = false;
-                DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (tb == DialogResult.OK)
-                {
-                    // load lại form
-                    LoadData();
-                }
+                XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -182,15 +173,30 @@ namespace XNK
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
-                string sql = "SELECT [stt],[sodonsx],[PI],[PSI_ref],[price],[pallet_pi],[POB_Date],ContractNo,[nuoc],amount, khachhang,[VariantPI],[item],CatalanCode,Size,iif(pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt) > 0, amount, amount + (pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt))) AS slxuat,(SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt)) as Tongxuat,pallet_pi - SUM(amount) OVER(PARTITION BY VariantPI, PI, item, ContractNo ORDER BY stt) AS tonpi FROM[dbo].[Ton_PI] inner join Supplies on Supplies.Variant = Ton_PI.VariantPI where Ton_PI.nuoc = 'Anh' Order by PI asc,POB_Date desc";
                 SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
                 saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
                 if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
                 {
                     string exportFilePath = saveFileDialogExcel.FileName;
-                    gridControl1.DataSource = ConnectDB.getTable(sql);
-                    gridControl1.ExportToXlsx(exportFilePath);
+                    gridView1.ColumnPanelRowHeight = 40;
+                    gridView1.OptionsPrint.AutoWidth = AutoSize;
+                    gridView1.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView1.OptionsPrint.ShowPrintExportProgress = true;
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFile;
+                    options.SheetName = "Tồn PI Anh";
+                    ExportSettings.DefaultExportType = ExportType.WYSIWYG;
+                    gridView1.ExportToXlsx(exportFilePath, options);
+                    //gridControl1.DataSource = ConnectDB.getTable(sql3);
+                    //gridControl1.ExportToXlsx(exportFilePath);
                     XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (XtraMessageBox.Show("Mở File xuất?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                        prc.StartInfo.FileName = exportFilePath;
+                        prc.Start();
+                    }
                 }
             }
             catch
@@ -201,10 +207,11 @@ namespace XNK
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
 
             if (e.KeyCode == Keys.Delete)
             {
+                string stt = gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "stt").ToString();
+
                 DialogResult tb = XtraMessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Chú ý", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (tb == DialogResult.Yes)
                 {
@@ -212,7 +219,7 @@ namespace XNK
                     //{
                     try
                     {
-                        string delete = "delete from Ton_PI where stt ='" + stt + "'";
+                        string delete = "delete from Ton_PI where stt ='" + stt + "' and nuoc ='Anh'";
                         ConnectDB.Query(delete);
                         LoadData();
                     }

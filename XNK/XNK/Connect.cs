@@ -73,9 +73,10 @@ namespace XNK
             Application.Exit();
         }
 
-        internal static void Query(string insert)
+        private void Connect_Load(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            themes.LookAndFeel.SkinName = "Lilian"; // cài đặt giao diện mặc định của form
         }
     }
 }

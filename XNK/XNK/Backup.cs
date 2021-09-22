@@ -41,7 +41,7 @@ namespace XNK
                     string sql = "BACKUP DATABASE [XNK] TO DISK ='" + textEdit1.Text + "\\" + "DATABASE" + "-" + DateTime.Now.ToString() + ".bak'";
                     if (ConnectDB.Query(sql) == -1)
                     {
-                        XtraMessageBox.Show("Chỉ sao lưu dữ liệu được trên Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Chỉ sao lưu dữ liệu được trên Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
                     else 
@@ -49,7 +49,6 @@ namespace XNK
                         XtraMessageBox.Show("Back up dữ liệu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         simpleButton2.Enabled = false;
                         this.Close();
-
                     }
                 }
             }

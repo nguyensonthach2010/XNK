@@ -12,6 +12,8 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid;
 using System.Threading;
+using DevExpress.XtraPrinting;
+using DevExpress.Export;
 
 namespace XNK
 {
@@ -27,13 +29,8 @@ namespace XNK
         {
             try
             {
-                string sql = "select Supplies.* from Supplies";
-
-
-
-
+                string sql = "SELECT [Variant],[CatalanCode],[SuppliesName],[Size],[Bricks],[M2],[Box],[Shelf],[CustomerName],[Productcode], (Box*Shelf) as hc, (Box*Shelf*M2) as gc FROM [dbo].[Supplies]";
                 gridControl1.DataSource = ConnectDB.getTable(sql);
-
             }
             catch
             {
@@ -58,11 +55,11 @@ namespace XNK
             string sErr = "";
             bool bVali = true;
             // kiem tra cell cua mot dong dang Edit xem co rong ko?
-            if (gridView1.GetRowCellValue(e.RowHandle, "Variant").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "CatalanCode").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "SuppliesName").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Size").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Bricks").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "M2").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Box").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Shelf").ToString() == ""  || gridView1.GetRowCellValue(e.RowHandle, "Productcode").ToString() == "")
+            if (gridView1.GetRowCellValue(e.RowHandle, "Variant").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "SuppliesName").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Size").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Bricks").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "M2").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Box").ToString() == "" || gridView1.GetRowCellValue(e.RowHandle, "Shelf").ToString() == ""  || gridView1.GetRowCellValue(e.RowHandle, "Productcode").ToString() == "")
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
-                sErr = sErr + "Vui lòng điền đầy đủ thông tin!! Nhấn OK để load lại form nhập!!";
+                sErr = sErr + "Hãy điền đầy đủ thông tin!!";
             }
             if (bVali)
             {
@@ -115,14 +112,8 @@ namespace XNK
             else
             {
                 e.Valid = false;
-                DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (tb == DialogResult.OK)
-                {
-                    // load lại form
-                    Loaddata();
-                }
+                XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         // code trường STT
@@ -219,26 +210,81 @@ namespace XNK
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
-                string sql = "select Supplies.* from Supplies";
+                //string sql3 = "SELECT [Variant],[CatalanCode],[SuppliesName],[Size],[Bricks],[M2],[Box],[Shelf],[CustomerName],[Productcode], (Box*Shelf) as hc, (Box*Shelf*M2) as gc FROM [dbo].[Supplies]";
                 SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
                 saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
                 if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
                 {
                     string exportFilePath = saveFileDialogExcel.FileName;
-                    gridControl1.DataSource = ConnectDB.getTable(sql);
-                    gridControl1.ExportToXlsx(exportFilePath);
+                    gridView1.ColumnPanelRowHeight = 40;
+                    gridView1.OptionsPrint.AutoWidth = AutoSize;
+                    gridView1.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView1.OptionsPrint.ShowPrintExportProgress = true;
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFile;
+                    options.SheetName = "Tham Chiếu";
+                    ExportSettings.DefaultExportType = ExportType.WYSIWYG;
+                    gridView1.ExportToXlsx(exportFilePath, options);
+                    //gridControl1.DataSource = ConnectDB.getTable(sql3);
+                    //gridControl1.ExportToXlsx(exportFilePath);
                     XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (XtraMessageBox.Show("Mở File xuất?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                        prc.StartInfo.FileName = exportFilePath ; 
+                        prc.Start();
+                    }    
                 }
             }
             catch
             {
                 XtraMessageBox.Show("Không thể Xuất file Excel", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
         }
 
         private void gridView1_InvalidRowException(object sender, DevExpress.XtraGrid.Views.Base.InvalidRowExceptionEventArgs e)
         {
             e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction;
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
+            try
+            {
+                GridView view = sender as GridView;
+                if (view == null) return;
+                string M2 = gridView1.GetRowCellValue(e.RowHandle, "M2").ToString();
+                string Box = gridView1.GetRowCellValue(e.RowHandle, "Box").ToString();
+                string Shelf = gridView1.GetRowCellValue(e.RowHandle, "Shelf").ToString();
+
+                switch (e.Column.Caption.ToString())
+                {
+
+                    case "Giá/cont":
+
+                        int tonghop = int.Parse(Box) * int.Parse(Shelf);
+                        float tongm2 = float.Parse(Box) * float.Parse(Shelf)
+                            * float.Parse(M2);
+
+                        view.SetRowCellValue(e.RowHandle, "hc", "");
+                        string cellValue2 = "" + tonghop + "" + view.GetRowCellValue(e.RowHandle, "hc").ToString();
+                        view.SetRowCellValue(e.RowHandle, "hc", cellValue2);
+
+                        view.SetRowCellValue(e.RowHandle, "gc", "");
+                        string cellValue3 = "" + Math.Round((float)tongm2, 2) + "" + view.GetRowCellValue(e.RowHandle, "gc").ToString();
+                        view.SetRowCellValue(e.RowHandle, "gc", cellValue3);
+
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                XtraMessageBox.Show(e.ToString());
+            }
+            
         }
     }
 }

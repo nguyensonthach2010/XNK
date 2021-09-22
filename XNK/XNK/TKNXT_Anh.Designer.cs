@@ -103,6 +103,12 @@
             // 
             // bandedGridView1
             // 
+            this.bandedGridView1.Appearance.EvenRow.BackColor = System.Drawing.Color.PapayaWhip;
+            this.bandedGridView1.Appearance.EvenRow.Options.UseBackColor = true;
+            this.bandedGridView1.AppearancePrint.EvenRow.BackColor = System.Drawing.Color.PapayaWhip;
+            this.bandedGridView1.AppearancePrint.EvenRow.Options.UseBackColor = true;
+            this.bandedGridView1.AppearancePrint.OddRow.BackColor = System.Drawing.Color.White;
+            this.bandedGridView1.AppearancePrint.OddRow.Options.UseBackColor = true;
             this.bandedGridView1.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand1,
             this.gridBand2,
@@ -127,6 +133,8 @@
             this.bandedGridView1.GridControl = this.gridControl1;
             this.bandedGridView1.Name = "bandedGridView1";
             this.bandedGridView1.OptionsBehavior.ReadOnly = true;
+            this.bandedGridView1.OptionsPrint.EnableAppearanceEvenRow = true;
+            this.bandedGridView1.OptionsPrint.EnableAppearanceOddRow = true;
             this.bandedGridView1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.bandedGridView1.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridView1.OptionsView.EnableAppearanceOddRow = true;
@@ -510,10 +518,14 @@
             // 
             // bandedGridColumn13
             // 
+            this.bandedGridColumn13.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn13.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn13.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn13.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.bandedGridColumn13.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bandedGridColumn13.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn13.AppearanceHeader.Options.UseBackColor = true;
             this.bandedGridColumn13.AppearanceHeader.Options.UseFont = true;
             this.bandedGridColumn13.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -526,10 +538,14 @@
             // 
             // bandedGridColumn14
             // 
+            this.bandedGridColumn14.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn14.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn14.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn14.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.bandedGridColumn14.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bandedGridColumn14.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn14.AppearanceHeader.Options.UseBackColor = true;
             this.bandedGridColumn14.AppearanceHeader.Options.UseFont = true;
             this.bandedGridColumn14.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -542,10 +558,14 @@
             // 
             // bandedGridColumn15
             // 
+            this.bandedGridColumn15.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn15.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn15.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn15.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.bandedGridColumn15.AppearanceHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.bandedGridColumn15.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn15.AppearanceHeader.Options.UseBackColor = true;
             this.bandedGridColumn15.AppearanceHeader.Options.UseFont = true;
             this.bandedGridColumn15.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;

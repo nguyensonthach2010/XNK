@@ -28,8 +28,10 @@ namespace XNK
         }
         private void Login_Load(object sender, EventArgs e)
         {
-           txtuser.Text= Properties.Settings.Default.user;
-            txtpass.Text= Properties.Settings.Default.pass ;
+            txtuser.Text= Properties.Settings.Default.user;
+            txtpass.Text= Properties.Settings.Default.pass;
+            DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            themes.LookAndFeel.SkinName = "Lilian"; // cài đặt giao diện mặc định của form
         }
         public static string tk = "";
         private void btnlogin_Click(object sender, EventArgs e)
@@ -86,6 +88,13 @@ namespace XNK
         private void btncancel_Click(object sender, EventArgs e)
         {
                 Application.Exit();
+        }
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+                btnlogin_Click(null, null);
         }
     }
 }

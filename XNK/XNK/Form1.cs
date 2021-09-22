@@ -17,11 +17,7 @@ namespace XNK
     {
         public Form1()
         {
-
-       
-                InitializeComponent();
-         
-
+            InitializeComponent();
         }
 
         private void skin()
@@ -29,7 +25,7 @@ namespace XNK
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.XtraBars.Helpers.SkinHelper.InitSkinGallery(skinRibbonGalleryBarItem1, true);
             DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            themes.LookAndFeel.SkinName = "Valentine"; // cài đặt giao diện mặc định của form
+            themes.LookAndFeel.SkinName = "Lilian"; // cài đặt giao diện mặc định của form
         }
         public static string taikhoan = "";
         private void Form1_Load(object sender, EventArgs e)
@@ -83,7 +79,7 @@ namespace XNK
 
             XK_Dailoan xkdl = new XK_Dailoan();
             xkdl.MdiParent = this;
-            xkdl.Text = "Xuất Khẩu DL";
+            xkdl.Text = "Xuất Khẩu Đài Loan";
             xkdl.Show();
         }
 
@@ -96,7 +92,7 @@ namespace XNK
 
             XK_UK xkuk = new XK_UK();
             xkuk.MdiParent = this;
-            xkuk.Text = "Xuất Khẩu Anh";
+            xkuk.Text = "Xuất Khẩu UK";
             xkuk.Show();
         }
 
@@ -107,21 +103,37 @@ namespace XNK
             //splashScreenManager1.CloseWaitForm();
 
 
-            Backup bk = new Backup();
+            //Backup bk = new Backup();
 
-            bk.Show();
+            //bk.Show();
+
+            try
+            {
+                string sql = "BACKUP DATABASE [XNK] TO DISK ='\\\\192.168.1.151\\Backup\\" + "XNK" + "-" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".bak'";
+                ConnectDB.Query(sql);
+                XtraMessageBox.Show("Back up dữ liệu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);                
+            }
+            catch (Exception)
+            {
+                XtraMessageBox.Show(e.ToString());
+            }
         }
 
         private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //splashScreenManager1.ShowWaitForm();
-            //Thread.Sleep(300);
-            //splashScreenManager1.CloseWaitForm();
+            ////splashScreenManager1.ShowWaitForm();
+            ////Thread.Sleep(300);
+            ////splashScreenManager1.CloseWaitForm();
 
-
-            Restore rs = new Restore();
-            rs.Show();
-
+            if (Quyentc.quyentc == "Admin")
+            {
+                Restore rs = new Restore();
+            rs.ShowDialog();
+            }
+            else
+            {
+                XtraMessageBox.Show("Chức năng chỉ hỗ trợ nếu là tài khoản Admin");
+            }    
         }
 
         private void barButtonItem19_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -264,13 +276,20 @@ namespace XNK
 
         private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            splashScreenManager1.ShowWaitForm();
-            Thread.Sleep(300);
-            splashScreenManager1.CloseWaitForm();
+            if (Quyentc.quyentc == "Admin")
+            {
+                splashScreenManager1.ShowWaitForm();
+                Thread.Sleep(300);
+                splashScreenManager1.CloseWaitForm();
 
-            Taikhoan tk = new Taikhoan();
+                Taikhoan tk = new Taikhoan();
 
-            tk.Show();
+                tk.Show();
+            }
+            else
+            {
+                XtraMessageBox.Show("Chức năng chỉ hỗ trợ nếu là tài khoản Admin");
+            }
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -285,6 +304,8 @@ namespace XNK
             DialogResult thongbao = XtraMessageBox.Show("Bạn muốn đăng xuất tài khoản?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (thongbao == DialogResult.Yes)
             {
+                XNK.Properties.Settings.Default.user = "";
+                XNK.Properties.Settings.Default.pass = "";
                 this.Visible = false;
                 new Login().ShowDialog();
             }
@@ -322,11 +343,30 @@ namespace XNK
 
         private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult thongbao = XtraMessageBox.Show("Chức năng tạm thời bị khóa ! Vui lòng đợi trong thời gian tới?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (thongbao == DialogResult.Yes)
+            if(Quyentc.quyentc=="Admin")
             {
+                DialogResult thongbao = XtraMessageBox.Show("Chức năng tạm thời bị khóa ! Vui lòng đợi trong thời gian tới?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (thongbao == DialogResult.Yes)
+                {
 
+                }
             }
+            else
+            {
+                XtraMessageBox.Show("Chức năng chỉ hỗ trợ nếu là tài khoản Admin");
+            }
+        }
+
+        private void barButtonItem36_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportPI i = new ImportPI();
+            i.Show();
+        }
+
+        private void barButtonItem37_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ImportNXT i = new ImportNXT();
+            i.Show();
         }
     }
 }

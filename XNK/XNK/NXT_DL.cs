@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid;
+using DevExpress.XtraPrinting;
+using DevExpress.Export;
 
 namespace XNK
 {
@@ -26,7 +28,7 @@ namespace XNK
             try
             {
                 GridView view = sender as GridView;
-                string sql2 = "select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Đài loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0)as TonDH where CtlCode='" + view.GetRowCellValue(e.RowHandle, "ctlcode").ToString() + "' group by CtlCode";
+                string sql2 = "select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = N'Đài Loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price )as TonDH where CtlCode='" + view.GetRowCellValue(e.RowHandle, "ctlcode").ToString() + "' group by CtlCode";
                 DataTable tb = ConnectDB.getTable(sql2);
                 if (view == null) return;
 
@@ -60,7 +62,7 @@ namespace XNK
                     //{
                     try
                     {
-                        string delete = "delete from NXT where stt ='" + stt + "'";
+                        string delete = "delete from NXT where stt ='" + stt + "' and nuoc =N'Đài Loan'";
                         ConnectDB.Query(delete);
                         LoadDT();
                     }
@@ -94,11 +96,11 @@ namespace XNK
             string sErr = "";
             bool bVali = true;
             // kiem tra cell cua mot dong dang Edit xem co rong ko?
-            if (bandedGridView1.GetRowCellValue(e.RowHandle, "ctlcode").ToString() == "")
+            if (bandedGridView1.GetRowCellValue(e.RowHandle, "ctlcode").ToString() == "" || bandedGridView1.GetRowCellValue(e.RowHandle, "ngaynhap").ToString() == "")
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
-                sErr = sErr + "Vui lòng điền mã code!!";
+                sErr = sErr + "Vui lòng điền mã code và ngày nhập!!";
             }
 
             if (bVali)
@@ -125,7 +127,7 @@ namespace XNK
                 {
                     try
                     {
-                        string insert = "insert into NXT values ('" + namsx + "','" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',N'" + kho + "',N'" + vitri + "','" + ctlcode + "','" + duoimau + "','" + loca + "','" + slgia + "','" + slhop + "','" + dnxl + "','" + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + "','" + FOB_Amount + "',N'Đài loan','" + slhopx + "')";
+                        string insert = "insert into NXT values ('" + namsx + "','" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',N'" + kho + "',N'" + vitri + "','" + ctlcode + "','" + duoimau + "',N'" + loca + "','" + slgia + "','" + slhop + "','" + dnxl + "','" + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + "','" + FOB_Amount + "',N'Đài Loan','" + slhopx + "')";
                         ConnectDB.Query(insert);
                         LoadDT();
                     }
@@ -140,7 +142,7 @@ namespace XNK
                     //{
                     try
                     {
-                        string update = "update NXT set namsx = '" + namsx + "',ngaynhap= '" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',kho = N'" + kho + "',vitri = N'" + vitri + "',ctlcode = '" + ctlcode + "',duoimau = '" + duoimau + "',loca = '" + loca + "',slgia = '" + slgia + "',slhop = '" + slhop + "',dnxl = N'" + dnxl + "', FOB_Date =' " + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + " ',FOB_Amount = ' " + FOB_Amount + " ',slhopx='" + slhopx + "'  where stt = '" + stt + "'";
+                        string update = "update NXT set namsx = '" + namsx + "',ngaynhap= '" + Convert.ToDateTime(ngaynhap).ToString("MM/dd/yyyy") + "',kho = N'" + kho + "',vitri = N'" + vitri + "',ctlcode = '" + ctlcode + "',duoimau = '" + duoimau + "',loca = N'" + loca + "',slgia = '" + slgia + "',slhop = '" + slhop + "',dnxl = N'" + dnxl + "', FOB_Date =' " + Convert.ToDateTime(FOB_Date).ToString("MM/dd/yyyy") + " ',FOB_Amount = ' " + FOB_Amount + " ',slhopx='" + slhopx + "'  where stt = '" + stt + "' and nuoc =N'Đài Loan'";
                         ConnectDB.Query(update);
                         LoadDT();
                     }
@@ -158,12 +160,7 @@ namespace XNK
             else
             {
                 e.Valid = false;
-                DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (tb == DialogResult.OK)
-                {
-                    // load lại form
-                    LoadDT();
-                }
+                XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -204,7 +201,7 @@ namespace XNK
             Load_Lookupedit();
             try
             {
-                string sql = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],slhopx,iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tongia ,	iif(slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)>0, slhopx, slhopx + ( slhopx - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slhxuat,(SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tonghxuat,slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tonhop, tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Đài loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = 'Đài loan' order by stt desc";
+                string sql = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],slhopx,iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date) AS tongia ,	iif(slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date)>0, slhopx, slhopx + ( slhopx - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date))) AS slhxuat,(SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date)) as Tonghxuat,slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY FOB_Date) AS tonhop, tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = N'Đài Loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price ) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = N'Đài Loan' order by [ctlcode],[namsx],[ngaynhap],[kho],[vitri],[duoimau],[loca],[slgia],[slhop],[dnxl] asc, FOB_Date desc";
                 gridControl1.DataSource = ConnectDB.getTable(sql);
             }
             catch
@@ -215,7 +212,7 @@ namespace XNK
 
         private void Load_Lookupedit()
         {
-            string sql1 = "select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Đài loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0)as TonDH group by CtlCode";
+            string sql1 = "select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = N'Đài Loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price )as TonDH group by CtlCode";
             repositoryItemLookUpEdit1.DataSource = ConnectDB.getTable(sql1);
             repositoryItemLookUpEdit1.ValueMember = "ctl";
             repositoryItemLookUpEdit1.DisplayMember = "ctl";
@@ -234,15 +231,30 @@ namespace XNK
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
-                string sql3 = "SELECT [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop],[stt],[dnxl],[FOB_Date],[FOB_Amount],slhopx,iif(slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) > 0, FOB_Amount, FOB_Amount + (slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slxuat,(dnxl + SUM(FOB_Amount) OVER(PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tongxuat,slgia - dnxl - SUM(FOB_Amount) OVER(PARTITION BY[namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tongia ,	iif(slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)>0, slhopx, slhopx + ( slhopx - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt))) AS slhxuat,(SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt)) as Tonghxuat,slhop - SUM(slhopx) OVER (PARTITION BY [namsx],[ngaynhap],[kho],[vitri],[ctlcode],[duoimau],[loca],[slgia],[slhop] ORDER BY stt) AS tonhop, tondh FROM[dbo].[NXT] inner join(select CtlCode as ctl, SUM(TonPI) as tondh from(Select X.PI as MaVT, x.ContractNo as Contr, x.khachhang as KH, H.CatalanCode as CtlCode, x.item as Item, X.PSI_ref, H.Size, x.pallet_pi, x.sodonsx, x.price, Sum(X.amount) as Xuat, (pallet_pi - SUM(amount)) as TonPI From Ton_PI X, Supplies H Where X.VariantPI = H.Variant and x.nuoc = 'Đài loan' Group By X.VariantPI, X.PI, H.CatalanCode, X.pallet_pi, x.khachhang, x.item, X.PSI_ref, x.ContractNo, H.Size, x.pallet_pi, x.PSI_ref, x.sodonsx, x.price having SUM(X.amount) > 0) as TonDH group by CtlCode) a on a.ctl = NXT.ctlcode  where NXT.nuoc = 'Đài loan' order by stt desc";
                 SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
                 saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
                 if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
                 {
                     string exportFilePath = saveFileDialogExcel.FileName;
-                    gridControl1.DataSource = ConnectDB.getTable(sql3);
-                    gridControl1.ExportToXlsx(exportFilePath);
+                    bandedGridView1.ColumnPanelRowHeight = 40;
+                    bandedGridView1.OptionsPrint.AutoWidth = AutoSize;
+                    bandedGridView1.OptionsPrint.AllowCancelPrintExport = true;
+                    bandedGridView1.OptionsPrint.ShowPrintExportProgress = true;
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFile;
+                    options.SheetName = "NXT Đài Loan";
+                    ExportSettings.DefaultExportType = ExportType.WYSIWYG;
+                    bandedGridView1.ExportToXlsx(exportFilePath, options);
+                    //gridControl1.DataSource = ConnectDB.getTable(sql3);
+                    //gridControl1.ExportToXlsx(exportFilePath);
                     XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (XtraMessageBox.Show("Mở File xuất?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                        prc.StartInfo.FileName = exportFilePath;
+                        prc.Start();
+                    }
                 }
             }
             catch

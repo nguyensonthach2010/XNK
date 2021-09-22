@@ -22,7 +22,7 @@ namespace XNK
         {
             try
             {
-                string insert = "insert into NXT values ('" + txtnamsx.Text + "','" + Convert.ToDateTime(txtngaynhap.Text).ToString("MM/dd/yyyy") + "',N'" + txtkho.Text + "',N'" + txtvitri.Text + "','" + txtmacode.Text + "','" + txtduoimau.Text + "','" + txtloca.Text + "','" + txtslgia.Value + "','" + txtslhop.Text + "','" + txtdnxl.Text + "','" + Convert.ToDateTime(txtfob.Text).ToString("MM/dd/yyyy") + "','" + txtslgiax.Text + "',N'Anh','" + txtslhopx.Text + "')";
+                string insert = "insert into NXT values ('" + txtnamsx.Text + "','" + Convert.ToDateTime(txtngaynhap.Text).ToString("MM/dd/yyyy") + "',N'" + txtkho.Text + "',N'" + txtvitri.Text + "','" + txtmacode.Text + "','" + txtduoimau.Text + "',N'" + txtloca.Text + "','" + txtslgia.Value + "','" + txtslhop.Text + "','" + txtdnxl.Text + "','" + Convert.ToDateTime(txtfob.Text).ToString("MM/dd/yyyy") + "','" + txtslgiax.Text + "',N'Anh','" + txtslhopx.Text + "')";
                 ConnectDB.Query(insert);
                 DialogResult tb = XtraMessageBox.Show("Đã thêm. Hãy bấm F5 ở form NXT để load lại dữ liệu !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 if (tb == DialogResult.OK)
@@ -37,7 +37,7 @@ namespace XNK
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
-            txtfob.Text = "";
+            txtfob.Text = DateTime.Now.ToString("MM/dd/yyyy");
             txtslgiax.Text = "";
             txtslhopx.Text = "";
         }
@@ -49,7 +49,13 @@ namespace XNK
             txtduoimau.Value = Convert.ToInt32(NXT_Anh.duoimau);
             txtslgia.Value = Convert.ToInt32(NXT_Anh.slgia);
             txtslhop.Value = Convert.ToInt32(NXT_Anh.slhop);
-            txtngaynhap.Text = Convert.ToDateTime(NXT_Anh.ngaynhap).ToString("MM/dd/yyyy");
+            if(NXT_Anh.ngaynhap == "")
+            {
+                txtngaynhap.Text = NXT_Anh.ngaynhap;
+            }else
+            {
+                txtngaynhap.Text = Convert.ToDateTime(NXT_Anh.ngaynhap).ToString("MM/dd/yyyy");
+            }    
             txtnamsx.Text = NXT_Anh.namsx;
             txtvitri.Text = NXT_Anh.vitri;
             txtmacode.Text = NXT_Anh.ctlcode;

@@ -26,7 +26,7 @@ namespace XNK
         {
             try 
             {
-                string sql = "SELECT        dbo.PrintB.Variant, dbo.PrintB.SUPPLIER, dbo.PrintB.POKhach, dbo.PrintB.PO, dbo.PrintB.OuterPacks, dbo.PrintB.Weight, dbo.PrintB.TotalPallets, dbo.ThamChieuB.Barcode, dbo.ThamChieuB.Bricks, dbo.ThamChieuB.Productcode, dbo.ThamChieuB.ProductNumber, dbo.ThamChieuB.SuppliesName, dbo.ThamChieuB.Box, dbo.PrintB.duoimau, dbo.PrintB.loca FROM dbo.PrintB INNER JOIN dbo.ThamChieuB ON dbo.ThamChieuB.Variant = dbo.PrintB.Variant";
+                string sql = "SELECT stt,dbo.PrintB.Variant, dbo.PrintB.SUPPLIER, dbo.PrintB.POKhach, dbo.PrintB.PO, dbo.PrintB.OuterPacks, dbo.PrintB.Weight, dbo.PrintB.TotalPallets, dbo.ThamChieuB.Barcode, dbo.ThamChieuB.Bricks, dbo.ThamChieuB.Productcode, dbo.ThamChieuB.ProductNumber, dbo.ThamChieuB.SuppliesName, dbo.ThamChieuB.Box, dbo.PrintB.duoimau, dbo.PrintB.loca FROM dbo.PrintB INNER JOIN dbo.ThamChieuB ON dbo.ThamChieuB.Variant = dbo.PrintB.Variant";
                 gridControl1.DataSource = ConnectDB.getTable(sql);
             }catch
             {
@@ -37,22 +37,14 @@ namespace XNK
         private void repositoryItemButtonEdit2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
 
-            string Variant = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "Variant").ToString();
-            string SUPPLIER = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "SUPPLIER").ToString();
-            string POKhach = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "POKhach").ToString();
-            string PO = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "PO").ToString();
-            string OuterPacks = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "OuterPacks").ToString();
-            string Weight = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "Weight").ToString();
-            string TotalPallets = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "TotalPallets").ToString();
-            string duoimau = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "duoimau").ToString();
-            string loca = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "loca").ToString();
+            string stt = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "stt").ToString();
 
-            string sql = "SELECT dbo.PrintB.Variant, dbo.PrintB.SUPPLIER, dbo.PrintB.POKhach, dbo.PrintB.PO, dbo.PrintB.OuterPacks, dbo.PrintB.Weight, dbo.PrintB.TotalPallets, dbo.ThamChieuB.Barcode, dbo.ThamChieuB.Bricks,  dbo.ThamChieuB.Productcode, dbo.ThamChieuB.ProductNumber, dbo.ThamChieuB.SuppliesName, dbo.ThamChieuB.Box, dbo.PrintB.duoimau,PrintB.loca FROM dbo.PrintB INNER JOIN dbo.ThamChieuB ON dbo.ThamChieuB.Variant = dbo.PrintB.Variant where PrintB.Variant = '" + Variant + "' and SUPPLIER = '" + SUPPLIER + "' and POKhach = '" + POKhach + "' and PO = '" + PO + "' and OuterPacks = '" + OuterPacks + "' and Weight = '" + Weight + "' and TotalPallets = '" + TotalPallets + "' and duoimau = '" + duoimau + "' and loca = '" + loca + "'";
+            string sql = "SELECT dbo.PrintB.Variant, dbo.PrintB.SUPPLIER, dbo.PrintB.POKhach, dbo.PrintB.PO, dbo.PrintB.OuterPacks, dbo.PrintB.Weight, dbo.PrintB.TotalPallets, dbo.ThamChieuB.Barcode, dbo.ThamChieuB.Bricks,  dbo.ThamChieuB.Productcode, dbo.ThamChieuB.ProductNumber, dbo.ThamChieuB.SuppliesName, dbo.ThamChieuB.Box, dbo.PrintB.duoimau,PrintB.loca FROM dbo.PrintB INNER JOIN dbo.ThamChieuB ON dbo.ThamChieuB.Variant = dbo.PrintB.Variant where stt = '"+stt+"'";
             try
             {
                 for (int i = 1; i < int.Parse(bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "TotalPallets").ToString()); i++)
                 {
-                    sql = sql + " union all SELECT dbo.PrintB.Variant, dbo.PrintB.SUPPLIER, dbo.PrintB.POKhach, dbo.PrintB.PO, dbo.PrintB.OuterPacks, dbo.PrintB.Weight, dbo.PrintB.TotalPallets, dbo.ThamChieuB.Barcode, dbo.ThamChieuB.Bricks,  dbo.ThamChieuB.Productcode, dbo.ThamChieuB.ProductNumber, dbo.ThamChieuB.SuppliesName, dbo.ThamChieuB.Box, dbo.PrintB.duoimau,PrintB.loca FROM dbo.PrintB INNER JOIN dbo.ThamChieuB ON dbo.ThamChieuB.Variant = dbo.PrintB.Variant where PrintB.Variant = '" + Variant + "' and SUPPLIER = '" + SUPPLIER + "' and POKhach = '" + POKhach + "' and PO = '" + PO + "' and OuterPacks = '" + OuterPacks + "' and Weight = '" + Weight + "' and TotalPallets = '" + TotalPallets + "' and duoimau = '" + duoimau + "' and loca = '" + loca + "'";
+                    sql = sql + " union all SELECT dbo.PrintB.Variant, dbo.PrintB.SUPPLIER, dbo.PrintB.POKhach, dbo.PrintB.PO, dbo.PrintB.OuterPacks, dbo.PrintB.Weight, dbo.PrintB.TotalPallets, dbo.ThamChieuB.Barcode, dbo.ThamChieuB.Bricks,  dbo.ThamChieuB.Productcode, dbo.ThamChieuB.ProductNumber, dbo.ThamChieuB.SuppliesName, dbo.ThamChieuB.Box, dbo.PrintB.duoimau,PrintB.loca FROM dbo.PrintB INNER JOIN dbo.ThamChieuB ON dbo.ThamChieuB.Variant = dbo.PrintB.Variant where stt = '"+stt+"'";
                 }
                 if (barEditItem2.EditValue.ToString() == "")
                 {
@@ -189,6 +181,7 @@ namespace XNK
                 string TotalPallets = bandedGridView1.GetRowCellValue(e.RowHandle, "TotalPallets").ToString();
                 string duoimau = bandedGridView1.GetRowCellValue(e.RowHandle, "duoimau").ToString();
                 string loca = bandedGridView1.GetRowCellValue(e.RowHandle, "loca").ToString();
+                string stt = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "stt").ToString();
 
                 GridView view = sender as GridView;
                 //kiểm tra xem dòng đang chọn có phải dòng mới không nếu đúng thì insert không thì update
@@ -211,7 +204,7 @@ namespace XNK
                     //{
                     try
                     {
-                        string update = "update PrintB set Variant = '" + Variant + "',SUPPLIER= '" + SUPPLIER + "',POKhach = '" + POKhach + "',PO = '" + PO + "',OuterPacks = '" + OuterPacks + "',Weight = '" + Weight + "',TotalPallets = '" + TotalPallets + "',duoimau = '" + duoimau + "',loca = '" + loca + "'";
+                        string update = "update PrintB set Variant = '" + Variant + "',SUPPLIER= '" + SUPPLIER + "',POKhach = '" + POKhach + "',PO = '" + PO + "',OuterPacks = '" + OuterPacks + "',Weight = '" + Weight + "',TotalPallets = '" + TotalPallets + "',duoimau = '" + duoimau + "',loca = '" + loca + "' where stt = '"+stt+"'";
                         ConnectDB.Query(update);
                         LoadData();
                     }
@@ -229,12 +222,7 @@ namespace XNK
             else
             {
                 e.Valid = false;
-                DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (tb == DialogResult.OK)
-                {
-                    // load lại form
-                    LoadData();
-                }
+                XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -296,6 +284,51 @@ namespace XNK
             Graphics gr = Graphics.FromHwnd(gridview.GridControl.Handle);
             SizeF size = gr.MeasureString(gridview.RowCount.ToString(), gridview.PaintAppearance.Row.GetFont());
             gridview.IndicatorWidth = Convert.ToInt32(size.Width + 0.999f) + GridPainter.Indicator.ImageSize.Width + 50;
+        }
+        public static string Variant = "";
+        public static string SUPPLIER = "";
+        public static string POKhach = "";
+        public static string PO = "";
+        public static string OuterPacks = "";
+        public static string Weight = "";
+        public static string duoimau = "";
+        public static string TotalPallets = "";
+        public static string loca = "";
+        private void bandedGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            Variant = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "Variant").ToString();
+            SUPPLIER = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "SUPPLIER").ToString();
+            POKhach = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "POKhach").ToString();
+            PO = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "PO").ToString();
+            OuterPacks = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "OuterPacks").ToString();
+            Weight = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "Weight").ToString();
+            TotalPallets = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "TotalPallets").ToString();
+            duoimau = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "duoimau").ToString();
+            loca = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "loca").ToString();
+
+            ReAddListPrint re = new ReAddListPrint();
+            re.Show();
+        }
+
+        private void bandedGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.F5)
+            {
+                LoadData();
+            }else if(e.KeyCode==Keys.Delete)
+            {
+                string stt = bandedGridView1.GetRowCellValue(bandedGridView1.FocusedRowHandle, "stt").ToString();
+                try
+                {
+                    string delete = "delete from PrintB where stt ='" + stt + "'";
+                    ConnectDB.Query(delete);
+                    LoadData();
+                }
+                catch
+                {
+                    XtraMessageBox.Show("Không thế kết nối tới CSDL!!");
+                }
+            }
         }
     }
 }

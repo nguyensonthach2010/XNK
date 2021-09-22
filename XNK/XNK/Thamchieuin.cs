@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.Drawing;
 using DevExpress.XtraGrid;
+using DevExpress.XtraPrinting;
+using DevExpress.Export;
 
 namespace XNK
 {
@@ -25,12 +27,7 @@ namespace XNK
             try
             {
                 string sql = "select ThamchieuB.* from ThamchieuB";
-
-
-
-
                 gridControl1.DataSource = ConnectDB.getTable(sql);
-
             }
             catch
             {
@@ -53,7 +50,7 @@ namespace XNK
             {
                 // chuỗi thông báo lỗi
                 bVali = false;
-                sErr = sErr + "Vui lòng điền đầy đủ thông tin!! Nhấn OK để load lại form nhập!!";
+                sErr = sErr + "Hãy điền đầy đủ thông tin!!";
             }
             if (bVali)
             {
@@ -109,12 +106,7 @@ namespace XNK
             else
             {
                 e.Valid = false;
-                DialogResult tb = XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                if (tb == DialogResult.OK)
-                {
-                    // load lại form
-                    Loaddata();
-                }
+                XtraMessageBox.Show(sErr, "Lỗi trong quá trình nhập!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -220,15 +212,30 @@ namespace XNK
             //Xuất file Excel từ gridview sau khi truyền dữ liệu từ câu sql vào gridview
             try
             {
-                string sql = "select ThamchieuB.* from ThamchieuB";
                 SaveFileDialog saveFileDialogExcel = new SaveFileDialog();
                 saveFileDialogExcel.Filter = "Excel files (*.xlsx)|*.xlsx";
                 if (saveFileDialogExcel.ShowDialog() == DialogResult.OK)
                 {
                     string exportFilePath = saveFileDialogExcel.FileName;
-                    gridControl1.DataSource = ConnectDB.getTable(sql);
-                    gridControl1.ExportToXlsx(exportFilePath);
+                    gridView1.ColumnPanelRowHeight = 40;
+                    gridView1.OptionsPrint.AutoWidth = AutoSize;
+                    gridView1.OptionsPrint.AllowCancelPrintExport = true;
+                    gridView1.OptionsPrint.ShowPrintExportProgress = true;
+                    XlsxExportOptions options = new XlsxExportOptions();
+                    options.TextExportMode = TextExportMode.Value;
+                    options.ExportMode = XlsxExportMode.SingleFile;
+                    options.SheetName = "Tham Chiếu In";
+                    ExportSettings.DefaultExportType = ExportType.WYSIWYG;
+                    gridView1.ExportToXlsx(exportFilePath, options);
+                    //gridControl1.DataSource = ConnectDB.getTable(sql3);
+                    //gridControl1.ExportToXlsx(exportFilePath);
                     XtraMessageBox.Show("Xuất file Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (XtraMessageBox.Show("Mở File xuất?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process prc = new System.Diagnostics.Process();
+                        prc.StartInfo.FileName = exportFilePath;
+                        prc.Start();
+                    }
                 }
             }
             catch
